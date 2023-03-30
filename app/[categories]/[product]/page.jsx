@@ -1,11 +1,12 @@
 import React from 'react'
+import Image from 'next/image'
 
 import { mlConstants } from '../../../constants/mlConstants'
 
 
 const Product = async ({params}) => {
     const fetchMlProduct = () => (
-        fetch(mlConstants.mlApiUrl + '/items?ids=' + params.id)
+        fetch(mlConstants.mlApiUrl + '/items?ids=' + params.product)
         .then(res => res.json())
     )  
 
@@ -17,7 +18,7 @@ const Product = async ({params}) => {
             <h1>
                 {product.title}
             </h1>
-            <img src={product.secure_thumbnail} alt={product.title} />
+            <Image src={product.secure_thumbnail} alt={product.title} width='100' height='100'/>
         </div>
     )
 }

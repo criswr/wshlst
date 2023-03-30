@@ -12,8 +12,8 @@ const links = [
         route: '/nosotros'
     },
     {
-        label: 'Catálogo',
-        route: '/catalogo'
+        label: 'Categorías',
+        route: '/MLC1368'
     }
 ]
 

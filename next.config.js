@@ -4,6 +4,14 @@ const nextConfig = {
     appDir: true
   },
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**.mlstatic.com',
+      },
+    ],
+  },
 }
 
 module.exports = nextConfig
