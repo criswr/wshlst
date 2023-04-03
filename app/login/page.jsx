@@ -4,6 +4,17 @@ import React from 'react'
 import { signIn } from 'next-auth/react'
 
 const Login = () => {
+
+    const newUser = () => fetch('/api/user', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            email,
+            name
+        }),
+    })
     
     const handleLogin = async () => {
         try {

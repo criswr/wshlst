@@ -1,6 +1,7 @@
+import { createUser } from "../../../lib/utils/createUser";
 import { getUser } from "../../../lib/utils/getUser";
 
-const getUserApi = async (req, res) => {
+const userApi = async (req, res) => {
     if (req.method === 'GET'){
         try {
             const { response, error} = await getUser()
@@ -11,8 +12,27 @@ const getUserApi = async (req, res) => {
         }
     }
 
-    res.setHeader('Allow', ['GET'])
-    res.status(425).end('Only GET method allowed')
+    if (req.method === 'POST'){
+        try {
+            const body = req.body //JSON.parse(req.body)
+            const { user } = await getUser(body.email)
+
+            if (!user){
+                const { response, error} = await createUser(body.email, body.name)
+                if (error) throw new Error(error)
+                return res.status(200).json({ response })
+            }
+
+            return res.status(200).json({ user })
+            
+        } catch (error) {
+            return res.status(500).json({ error: error.message })
+        }
+    }
+
+
+    res.setHeader('Allow', ['GET', 'POST'])
+    res.status(425).end('Only GET or POST methods allowed')
 }
 
-export default getUserApi
+export default userApi

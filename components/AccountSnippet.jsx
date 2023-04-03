@@ -7,12 +7,6 @@ const AccountSnippet = () => {
     <span>
         {data ? 'true ' : 'false '}
 
-        <img
-            src={data?.user?.image}
-            height="25"
-            width="25"
-            alt="user image"
-        />
         Hi, {data?.user?.name}, {data?.user?.email}
     </span>
   )
