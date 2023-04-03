@@ -1,24 +1,12 @@
-import clientPromise from "../mongo";
+import { dbInit } from "./dbInit";
 
-let db
 let response
-
-const init = async (dataBase, collection) => {
-    if (db) return
-
-    try {
-        const client = await clientPromise
-        db = await client.db(dataBase)
-        response = await db.collection(collection)
-    }catch(error){
-        throw new Error('DB connection failed')
-    }
-}
 
 
 export const getUser = async () => {
     try {
-        if (!response) await init('sample_mflix', 'movies')
+        if (!response) response = await dbInit('sample_mflix', 'movies')
+
         const res = await response
             .find({})
             .limit(20)
