@@ -21,7 +21,7 @@ export const addRemoveFromList = async (email, item) => {
                 },
             }
             const result = await response.updateOne(userQuery, addItem)
-            return { added: result }
+            return { result }
         }
             
         return { user: res }

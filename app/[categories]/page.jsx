@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import React from 'react'
 import { mlConstants } from '../../constants/mlConstants'
+import ItemCard from '../../components/ItemCard'
 
 const Categories = async ({ params }) => {
     const fetchMlProducts = () => (
@@ -9,19 +9,12 @@ const Categories = async ({ params }) => {
     )
 
     const products = await fetchMlProducts()
+
+
   return (
     <div>
         {products.results.map((item) => (
-            <article key={item.id}>
-                <ul>
-                    <Link href={'/[categories]/[product]'} as={params.categories + '/' + item.id}>
-                        <li>{item.title}</li>
-                        <li>${item.price}</li>
-                        <li>{item.permalink}</li>
-                        <li>Shipping: {item.shipping.logistic_type}</li>
-                    </Link>
-                </ul>
-            </article>
+            <ItemCard item={ item } params={ params } key={item.id} />
         ))}
     </div>
   )

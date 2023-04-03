@@ -12,7 +12,8 @@ export const createUser = async (email, name) => {
                 email,
                 name,
                 status: true,
-                wishlist: {},
+                role: 'user',
+                wishlist: [],
             })
 
         return { response: res }
