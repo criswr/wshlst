@@ -11,9 +11,10 @@ export const createUser = async (email, name) => {
             .insertOne({
                 email,
                 name,
-                status: true
+                status: true,
+                wishlist: {},
             })
-            
+
         return { response: res }
     }catch (error){
         throw new Error('Cant insert', error.message)

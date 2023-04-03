@@ -1,20 +1,50 @@
 'use client'
 
-import React from 'react'
-import { signIn } from 'next-auth/react'
+import React, { useEffect } from 'react'
+import { getSession, signIn } from 'next-auth/react'
+
 
 const Login = () => {
+    
+    useEffect(() => {
+        const getUserSession = async () => {
+            const session = await getSession()
+            if (session){
+                const newUser = (email, name) => fetch('/api/user', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        name
+                    }),
+                })
+                
+                newUser(session.user.email, session.user.name)
+            }
+        }
+        getUserSession()
+    }, [])
+    
 
-    const newUser = () => fetch('/api/user', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            email,
-            name
-        }),
-    })
+
+        /*       if (data.user){
+                const newUser = (email, name) => fetch('/api/user', {
+                    method: 'POST',
+                    headers: {
+                      'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email,
+                        name
+                    }),
+                })
+                newUser(data.user.email, data.user.name)
+              } */
+
+    
+
     
     const handleLogin = async () => {
         try {
@@ -22,7 +52,7 @@ const Login = () => {
                 redirect: false
             })
             
-            console.log(data)
+
             
         } catch (error) {
             console.log(error)

@@ -9,19 +9,19 @@ import AccountSnippet from './AccountSnippet'
 const links = [
     {
         label: 'Inicio',
-        route: '/'
+        route: '/',
     },
     {
         label: 'Nosotros',
-        route: '/nosotros'
+        route: '/nosotros',
     },
     {
         label: 'Categorías',
-        route: '/MLC1368'
+        route: '/MLC1368',
     },
     {
         label: 'Login',
-        route: '/login'
+        route: '/login',
     }
 ]
 

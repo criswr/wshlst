@@ -5,9 +5,11 @@ const AccountSnippet = () => {
   const { data } = useSession()
   return (
     <span>
-        {data ? 'true ' : 'false '}
-
-        Hi, {data?.user?.name}, {data?.user?.email}
+        {data ? 
+          `Hi, ${data?.user?.name}, ${data?.user?.email}`
+        :
+          'Please log in '
+        }       
     </span>
   )
 }

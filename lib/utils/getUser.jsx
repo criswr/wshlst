@@ -8,7 +8,7 @@ export const getUser = async (email) => {
     try {
         if (!response) response = await dbInit(dbConstants.mainDb, dbConstants.usersColl)
 
-        const query = { email: email };
+        const query = { email: email }
         const options = {
             projection: { _id: 0, email: 1 },
         }
