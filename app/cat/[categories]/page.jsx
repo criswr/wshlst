@@ -1,6 +1,6 @@
 import React from 'react'
-import { mlConstants } from '../../constants/mlConstants'
-import ItemCard from '../../components/ItemCard'
+import { mlConstants } from '../../../constants/mlConstants'
+import ItemCard from '../../../components/ItemCard'
 
 const Categories = async ({ params }) => {
     const fetchMlProducts = () => (

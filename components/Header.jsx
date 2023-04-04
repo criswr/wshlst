@@ -17,7 +17,7 @@ const links = [
     },
     {
         label: 'Categorías',
-        route: '/MLC1368',
+        route: '/cat/MLC1368',
     },
     {
         label: 'Login',

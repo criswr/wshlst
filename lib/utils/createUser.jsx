@@ -11,6 +11,8 @@ export const createUser = async (email, name) => {
             .insertOne({
                 email,
                 name,
+                username: '',
+                img: '',
                 status: true,
                 role: 'user',
                 wishlist: [],

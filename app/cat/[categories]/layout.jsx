@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 
-import { mlConstants } from '../../constants/mlConstants'
+import { mlConstants } from '../../../constants/mlConstants'
 
 
 

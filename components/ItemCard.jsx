@@ -8,7 +8,7 @@ const ItemCard = ({item, params}) => {
     return (
         <article>
             <ul>
-                <Link href={'/[categories]/[product]'} as={params.categories + '/' + item.id}>
+                <Link href={'/cat/[categories]/[product]'} as={'/cat/' + params.categories + '/' + item.id}>
                     <li>{item.title}</li>
                     <li>${item.price}</li>
                     <li>{item.permalink}</li>

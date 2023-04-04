@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { mlConstants } from '../../../constants/mlConstants'
+import { mlConstants } from '../../../../constants/mlConstants'
 
 
 const Product = async ({params}) => {

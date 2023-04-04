@@ -15,10 +15,25 @@ export const getUser = async (email) => {
 
         const res = await response
             .findOne(query, options)
-        console.log('res:', res)  
         return { user: res }
     }catch (error){
         throw new Error('Cant get response')
+    }
+}
+
+export const getUserByUsername = async (username) => {
+    try {
+        if (!response) response = await dbInit(dbConstants.mainDb, dbConstants.usersColl)
+
+        const query = { username: username }
+        const options = {
+            projection: { _id: 0 },
+        }
+        const res = await response
+            .findOne(query, options)
+        return { user: res }
+    }catch (error){
+        throw new Error('Username not found')
     }
 }
 

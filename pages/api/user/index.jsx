@@ -1,5 +1,5 @@
 import { createUser } from "../../../lib/utils/createUser";
-import { getUser } from "../../../lib/utils/getUser";
+import { getUser, getUserByUsername } from "../../../lib/utils/getUser";
 
 const userApi = async (req, res) => {
     if (req.method === 'GET'){
@@ -15,6 +15,12 @@ const userApi = async (req, res) => {
     if (req.method === 'POST'){
         try {
             const body = req.body //JSON.parse(req.body)
+
+            if (body.username){
+                const { user } = await getUserByUsername(body.username)
+                return res.status(200).json({ user })
+            }
+
             const { user } = await getUser(body.email)
 
             if (!user){
