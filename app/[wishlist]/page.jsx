@@ -1,9 +1,12 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { mlConstants } from '../../constants/mlConstants'
+import ItemCard from '../../components/ItemCard'
 
 const Wishlist = ({ params }) => {
     const [user, setUser] = useState()
+    const [items, setItems] = useState()
 
     useEffect(() => {
         const findUser = (username) => {
@@ -17,18 +20,31 @@ const Wishlist = ({ params }) => {
                 }),
             })
             .then(res => res.json())
-            .then(data => {
-                setUser(data.user)
-                console.log(data.user)
-            })
+            .then(data => setUser(data.user))
         }
         findUser(params.wishlist)
-        console.log('user:', user)
     }, [])
+
+    useEffect(() => {
+        if (user){
+            const fetchFavedMlProducts = (user) => (
+                fetch(mlConstants.mlApiUrl + 'items?ids=' + user.wishlist.toString())
+                .then(res => res.json())
+                .then(data => setItems(data))
+                )
+                fetchFavedMlProducts(user)
+            }
+    }, [user])
+    
     
     return (
         <div>
             <h1>{user?.email}</h1>
+            <div>
+                {items?.map((item) => (
+                    <ItemCard item={ item.body } params={ params } key={item.body.id} />
+                ))}
+            </div>
         </div>
     )
 }
