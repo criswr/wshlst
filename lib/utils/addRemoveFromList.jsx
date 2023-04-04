@@ -11,20 +11,25 @@ export const addRemoveFromList = async (email, item) => {
         
         const user = await response
             .findOne(userQuery)
-
-        if (user.wishlist.includes(item)) {  
-            const removeItem = {}         
-        }else{
-            const addItem = {
-                $set: {
-                    wishlist: [...user.wishlist, item]
-                },
-            }
-            const result = await response.updateOne(userQuery, addItem)
-            return { result }
+        
+        const addItem = {
+            $set: {
+                wishlist: [...user.wishlist, item]
+            },
         }
-            
-        return { user: res }
+
+        const removeItem = {
+            $set: {
+                wishlist: user.wishlist.filter(it => it !== item)
+            },
+        }
+
+        const isAdded = user.wishlist.includes(item)
+
+        const result = await response.updateOne(userQuery, isAdded ? removeItem : addItem)
+
+        return { result }
+
     }catch (error){
         throw new Error('Cant get response')
     }

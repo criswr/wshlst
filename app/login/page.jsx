@@ -1,10 +1,11 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { getSession, signIn } from 'next-auth/react'
 
 
 const Login = () => {
+    const dataFetchedRef = useRef(false)
     
     useEffect(() => {
         const getUserSession = async () => {
@@ -24,6 +25,10 @@ const Login = () => {
                 newUser(session.user.email, session.user.name)
             }
         }
+
+        if (dataFetchedRef.current) return
+        dataFetchedRef.current = true
+
         getUserSession()
     }, [])
     
@@ -35,7 +40,7 @@ const Login = () => {
             })
 
         } catch (error) {
-            console.log(error)
+            throw new Error(error)
         }
     }
 
