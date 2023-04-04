@@ -3,17 +3,28 @@ import { mlConstants } from '../../../constants/mlConstants'
 import ItemCard from '../../../components/ItemCard'
 
 const Categories = async ({ params }) => {
-    const fetchMlProducts = () => (
+    /* const fetchMlProducts = () => (
         fetch(mlConstants.mlApiUrl + 'sites/'  + mlConstants.mlSite + '/search?category=' + params.categories + '&logistic_type=fulfillment')
         .then(res => res.json())
-    )
+    ) */
 
-    const products = await fetchMlProducts()
+    const fetchMlProducts = (cat) => fetch(process.env.BASE_FETCH_URL + '/api/products', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          category: cat,
+      }),
+  }).then(res => res.json())
+   
 
+    const products = await fetchMlProducts(params.categories)
+    console.log(products, 'products')
 
   return (
     <div>
-        {products.results.map((item) => (
+        {products?.map((item) => (
             <ItemCard item={ item } params={ params } key={item.id} />
         ))}
     </div>

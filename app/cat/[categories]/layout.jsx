@@ -20,7 +20,7 @@ const CategoriesLayout = async ({ params, children }) => {
             <section>
                 <ul>
                     {mlConstants.mlCategories.map((item) => (
-                        <li key={item.id}><Link href={'[categories]'} as={`${item.id}`}>{item.name}</Link></li>
+                        <li key={item.id}><Link href={'cat/[categories]'} as={`cat/${item.id}`}>{item.name}</Link></li>
                     ))}
                 </ul>
             </section>
