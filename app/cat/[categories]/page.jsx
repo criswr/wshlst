@@ -20,13 +20,15 @@ const Categories = async ({ params }) => {
    
 
     const products = await fetchMlProducts(params.categories)
-    console.log(products, 'products')
+
 
   return (
     <div>
-        {products?.map((item) => (
+      {Array.isArray(products) &&
+        products.map((item) => (
             <ItemCard item={ item } params={ params } key={item.id} />
-        ))}
+        ))
+      }
     </div>
   )
 }

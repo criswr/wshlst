@@ -5,6 +5,13 @@ import React from 'react'
 import { addRemove } from './AddRemove'
 
 const ItemCard = ({item, params}) => {
+    class Item {
+        constructor(id){
+            this.id = id
+            this.status = true
+            this.timestamp = Date.now()
+        }
+    }
     return (
         <article>
             <ul>
@@ -14,7 +21,7 @@ const ItemCard = ({item, params}) => {
                     <li>{item.permalink}</li>
                     <li>Shipping: {item.shipping.logistic_type}</li>
                 </Link>
-                    <button onClick={() => addRemove(item.id)}>Fav</button>
+                    <button onClick={() => addRemove(new Item(item.id))}>Fav</button>
             </ul>
         </article>
     )

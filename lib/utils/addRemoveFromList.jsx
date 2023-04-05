@@ -20,11 +20,11 @@ export const addRemoveFromList = async (email, item) => {
 
         const removeItem = {
             $set: {
-                wishlist: user.wishlist.filter(it => it !== item)
+                wishlist: user.wishlist.filter(el => el.id !== item.id)
             },
         }
 
-        const isAdded = user.wishlist.includes(item)
+        const isAdded = user.wishlist.some(el => el.id === item.id)
 
         const result = await response.updateOne(userQuery, isAdded ? removeItem : addItem)
 
