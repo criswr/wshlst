@@ -1,33 +1,34 @@
-import React from 'react'
-import { mlConstants } from '../../../constants/mlConstants'
+'use client'
+
+import React, { useEffect, useState } from 'react'
 import ItemCard from '../../../components/ItemCard'
 
-const Categories = async ({ params }) => {
-    /* const fetchMlProducts = () => (
-        fetch(mlConstants.mlApiUrl + 'sites/'  + mlConstants.mlSite + '/search?category=' + params.categories + '&logistic_type=fulfillment')
-        .then(res => res.json())
-    ) */
+const Categories = ({ params }) => {
+  const [products, setProducts] = useState()
 
-    const fetchMlProducts = (cat) => fetch(process.env.BASE_FETCH_URL + '/api/products', {
+  useEffect(() => {
+    const fetchMlProducts = (cat) => fetch('/api/products', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-          category: cat,
+        body: JSON.stringify({
+        category: cat,
       }),
-  }).then(res => res.json())
-   
-
-    const products = await fetchMlProducts(params.categories)
-
-
+    })
+    .then(res => res.json())
+    .then(data => setProducts(data))
+  fetchMlProducts(params.categories)
+  }, [])
+  
   return (
     <div>
-      {Array.isArray(products) &&
+      {Array.isArray(products) ?
         products.map((item) => (
             <ItemCard item={ item } params={ params } key={item.id} />
         ))
+      :
+          <p>Cargandooo</p>
       }
     </div>
   )
