@@ -22,7 +22,7 @@ const Categories = ({ params }) => {
       },
         body: JSON.stringify({
         category: cat,
-        page: offset
+        offset: offset
       }),
     })
     .then(res => res.json())
@@ -50,7 +50,6 @@ const Categories = ({ params }) => {
 
 
   const handleOnScroll = () => {
-    console.log('ref', dataFetchedRef.current, inView)
       setCurrPage(currPage + 1)
   }
 
