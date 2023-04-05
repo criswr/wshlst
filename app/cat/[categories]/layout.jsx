@@ -4,17 +4,7 @@ import Link from 'next/link'
 import { mlConstants } from '../../../constants/mlConstants'
 
 
-
-const CategoriesLayout = async ({ params, children }) => {
-    const mlCategory = params
-
-    const fetchMlProducts = () => (
-        fetch(mlConstants.mlApiUrl + 'sites/'  + mlConstants.mlSite + '/search?category=' + mlCategory + '&logistic_type=fulfillment')
-        .then(res => res.json())
-    )
-
-    const products = await fetchMlProducts()
-
+const CategoriesLayout = async ({ children }) => {
     return (
         <div>
             <section>
