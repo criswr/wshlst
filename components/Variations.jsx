@@ -8,6 +8,8 @@ const Variations = ({variations}) => {
 
     const handleOnClick = (id, value) => {
         if (id in selectedVari){
+            if (uniqueVaris[id].length === 1) return
+
             if (selectedVari[id] === value){
                 setSelectedVari(prevState => {
                     const newSelected = {...prevState}
@@ -73,6 +75,15 @@ const Variations = ({variations}) => {
         }
         setUniqueVaris(uniqueVarsValues())
     }, [])
+
+    useEffect(() => {
+        for (const vari in uniqueVaris) {
+            if (uniqueVaris[vari].length === 1) {
+                setSelectedVari({...selectedVari, [vari]: uniqueVaris[vari][0]})
+            }
+        }
+    }, [uniqueVaris])
+    
 
     useEffect(() => {
       console.log(selectedVari)
