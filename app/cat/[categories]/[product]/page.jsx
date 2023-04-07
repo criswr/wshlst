@@ -3,6 +3,7 @@ import Image from 'next/image'
 
 import { mlConstants } from '../../../../constants/mlConstants'
 import Variations from '../../../../components/Variations'
+import { addRemove } from '../../../../components/AddRemove'
 
 //https://api.mercadolibre.com/items/MLC973984805?attributes=variations 
 
@@ -29,7 +30,9 @@ const Product = async ({params}) => {
                 {product.title}
             </h1>
             <Image src={product.secure_thumbnail} alt={product.title} width='100' height='100'/>
-            {variations.length ? <Variations variations={variations}/> : <p>No hay variaciones</p>}
+            {variations.length ? <Variations variations={variations} product={product} /> : 
+            <button>Agregar a Favoritos crear comp</button>
+            }
         </div>
     )
 }

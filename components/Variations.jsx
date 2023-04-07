@@ -1,8 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
+import { addRemove } from './AddRemove'
+import { Item } from './ItemClass'
 
-const Variations = ({variations}) => {
+const Variations = ({variations, product}) => {
     const [selectedVari, setSelectedVari] = useState({})
     const [uniqueVaris, setUniqueVaris] = useState({})
 
@@ -77,11 +79,13 @@ const Variations = ({variations}) => {
     }, [])
 
     useEffect(() => {
+        let defaultSelected = {}
         for (const vari in uniqueVaris) {
             if (uniqueVaris[vari].length === 1) {
-                setSelectedVari({...selectedVari, [vari]: uniqueVaris[vari][0]})
+                defaultSelected = {...defaultSelected, [vari]: uniqueVaris[vari][0]}
             }
         }
+        setSelectedVari(defaultSelected)
     }, [uniqueVaris])
     
 
@@ -103,6 +107,8 @@ const Variations = ({variations}) => {
                                 ))}
                         </div>
                     ))}
+
+                    <button onClick={() => addRemove(new Item(product.id, selectedVari))}>Agregar a Favoritos</button>
                 </div>
             }
         </div>
