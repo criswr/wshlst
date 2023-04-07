@@ -30,6 +30,8 @@ const Variations = ({variations}) => {
     const isButtonDisabled = (id, value) => {
         if (!Object.keys(selectedVari).length) return false
 
+        if (Object.keys(selectedVari).length === 1 && Object.keys(selectedVari)[0] === id) return false
+
         const isVariAvailable = (comb) => {
             for (const elem in selectedVari) {
                 return comb.name === elem && comb.value_name === selectedVari[elem]
