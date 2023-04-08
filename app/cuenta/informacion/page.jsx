@@ -27,6 +27,8 @@ const informacion = () => {
   }
 
   const handleOnSaveUsername = () => {
+    if (newUsername === '') return setUsernameErr(true)
+
     fetch('/api/username', {
         method: 'PUT',
         headers: {
@@ -69,22 +71,32 @@ const informacion = () => {
       findUser(data.user.email)
     }
   }, [data])
+
+  useEffect(() => {
+    if (user) !user.username && setChangeUsername(true)
+  }, [user])
+  
   
 
 
   return (
     <div>
       <h1>Mi cuenta</h1>
-      <span>
-        {user?.username ? 
         <div>
           {!changeUsername ?
-            <p>Nombre de usuario: {user.username} <button onClick={handleOnChangeUsername}>Cambiar nombre de usuario</button></p> 
+
+            <div>
+              {user?.username && 
+                <p>Nombre de usuario: {user.username} <button onClick={handleOnChangeUsername}>Cambiar nombre de usuario</button></p> 
+              }
+            </div>
+
           :
             <div>
-
+              <p>Nuevo nombre de usuario:</p>
               <input type="text" 
               value={newUsername} 
+              autoFocus={true}
               onChange={(e) => {
                 validate(e.target.value)
                 setNewUsername(e.target.value)
@@ -93,16 +105,14 @@ const informacion = () => {
               />
 
               <button onClick={handleOnSaveUsername} disabled={usernameErr}>Guardar</button>
+              <button onClick={() => setChangeUsername(false)}>Cancelar</button>
             </div>
           }
 
           {usernameErr && <p>Usuario no válido</p>}
           {usernameTaken && <p>Usuario no disponible</p>}
         </div>
-        :
-          'No tienes user '
-        }
-    </span>
+
     </div>
 
   )

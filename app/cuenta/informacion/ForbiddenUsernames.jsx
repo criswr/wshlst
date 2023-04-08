@@ -640,5 +640,6 @@ export const forbiddenUsernames = [
     'yoursite',
     'yourusername',
     'locus',
-    'cristian'
+    'cristian',
+    ''
 ]
