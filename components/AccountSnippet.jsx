@@ -9,7 +9,7 @@ const AccountSnippet = () => {
           `Hi, ${data?.user?.name}, ${data?.user?.email}`
         :
           'Please log in '
-        }       
+        }
     </span>
   )
 }

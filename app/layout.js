@@ -6,7 +6,7 @@ export const metadata = {
   description: 'Crea tu wishlist',
 }
 
- 
+
 export default function RootLayout({ children }) {
 
  return (

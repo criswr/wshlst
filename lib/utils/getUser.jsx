@@ -10,7 +10,7 @@ export const getUser = async (email) => {
 
         const query = { email: email }
         const options = {
-            projection: { _id: 0, email: 1 },
+            projection: { _id: 0 },
         }
 
         const res = await response

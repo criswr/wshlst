@@ -9,14 +9,14 @@ const Wishlist = ({ params }) => {
     const [items, setItems] = useState()
 
     useEffect(() => {
-        const findUser = (username) => {
+        const findUser = (query) => {
             fetch('/api/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    username: username,
+                    username: query,
                 }),
             })
             .then(res => res.json())
@@ -27,15 +27,16 @@ const Wishlist = ({ params }) => {
 
     useEffect(() => {
         if (user){
+            const idArr = user.wishlist.map((elem) => (elem.id))
+
             const fetchFavedMlProducts = (user) => (
-                fetch(mlConstants.mlApiUrl + 'items?ids=' + user.wishlist.toString())
+                fetch(mlConstants.mlApiUrl + 'items?ids=' + idArr.toString())
                 .then(res => res.json())
                 .then(data => setItems(data))
                 )
                 fetchFavedMlProducts(user)
             }
     }, [user])
-    
     
     return (
         <div>

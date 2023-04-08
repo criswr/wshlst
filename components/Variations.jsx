@@ -93,6 +93,11 @@ const Variations = ({variations, product}) => {
       console.log(selectedVari)
     }, [selectedVari])
     
+    const handleOnAdd = () => {
+        if (Object.keys(uniqueVaris).length !== Object.keys(selectedVari).length) return
+        
+        addRemove(new Item(product.id, selectedVari))
+    }
     
     return (
         <div>
@@ -108,7 +113,7 @@ const Variations = ({variations, product}) => {
                         </div>
                     ))}
 
-                    <button onClick={() => addRemove(new Item(product.id, selectedVari))}>Agregar a Favoritos</button>
+                    <button onClick={handleOnAdd}>Agregar a Favoritos</button>
                 </div>
             }
         </div>

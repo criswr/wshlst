@@ -2,14 +2,17 @@
 
 import React, { useEffect, useRef } from 'react'
 import { getSession, signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 
 const Login = () => {
     const dataFetchedRef = useRef(false)
+    const router = useRouter()
     
     useEffect(() => {
         const getUserSession = async () => {
             const session = await getSession()
+
             if (session){
                 const newUser = (email, name) => fetch('/api/user', {
                     method: 'POST',
@@ -21,8 +24,9 @@ const Login = () => {
                         name
                     }),
                 })
-
                 newUser(session.user.email, session.user.name)
+
+                router.push('/cuenta')
             }
         }
 

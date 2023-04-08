@@ -3,6 +3,7 @@
 import { SessionProvider} from 'next-auth/react'
 import Link from 'next/link'
 import React from 'react'
+
 import AccountSnippet from './AccountSnippet'
 
 
@@ -22,7 +23,11 @@ const links = [
     {
         label: 'Login',
         route: '/login',
-    }
+    },
+    {
+        label: 'Cuenta',
+        route: '/cuenta',
+    },
 ]
 
 
