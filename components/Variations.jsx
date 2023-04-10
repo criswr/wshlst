@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { addRemove } from './AddRemove'
 import { Item } from './ItemClass'
+import AddButton from './AddButton'
 
 const Variations = ({variations, product}) => {
     const [selectedVari, setSelectedVari] = useState({})
@@ -113,7 +114,7 @@ const Variations = ({variations, product}) => {
                         </div>
                     ))}
 
-                    <button onClick={handleOnAdd}>Agregar a Favoritos</button>
+                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} />
                 </div>
             }
         </div>
