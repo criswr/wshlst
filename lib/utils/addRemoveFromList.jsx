@@ -25,8 +25,11 @@ export const addRemoveFromList = async (email, item) => {
         }
 
         const isAdded = user.wishlist.some(el => el.id === item.id)
+        const isFull = user.wishlist.lenght >= 50
 
         const result = await response.updateOne(userQuery, isAdded ? removeItem : addItem)
+
+        if (isFull) return {error: 'Lista llena'}
 
         return { result }
 
