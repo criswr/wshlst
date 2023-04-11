@@ -1,10 +1,10 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { mlConstants } from '../../../../constants/mlConstants'
-import Variations from '../../../../components/Variations'
-import { addRemove } from '../../../../components/AddRemove'
-import AddButton from '../../../../components/AddButton'
+import { mlConstants } from '../../../constants/mlConstants'
+import Variations from '../../../components/Variations'
+import { addRemove } from '../../../components/AddRemove'
+import AddButton from '../../../components/AddButton'
 
 //https://api.mercadolibre.com/items/MLC973984805?attributes=variations 
 

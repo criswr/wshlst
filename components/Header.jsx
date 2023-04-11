@@ -17,8 +17,8 @@ const links = [
         route: '/nosotros',
     },
     {
-        label: 'Categorías',
-        route: '/cat/MLC1368',
+        label: 'Items',
+        route: '/items/?cat=MLC1368',
     },
     {
         label: 'Login',

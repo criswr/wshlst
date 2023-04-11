@@ -1,14 +1,10 @@
-import { getMlProducts } from "../../../lib/utils/getMlProducts"
-
-
-const productsApi = async (req, res) => {
+const searchApi = async (req, res) => {
     if (req.method === 'GET'){
         try {
-            const { cat, q, offset } = req.query
+            const { query } = req.query
             const body = req.body //JSON.parse(req.body)
-            const queryKey = cat ? 'category' : 'q'
-            const query = cat || q
-            const { result, error } = await getMlProducts(query, offset, queryKey)
+            const queryKey = 'q'
+            const { result, error } = await getMlProducts(query, body.offset, queryKey)
             if (error) throw new Error(error)
             return res.status(200).json(result)
             
@@ -21,4 +17,4 @@ const productsApi = async (req, res) => {
     res.status(425).end('Only GET method allowed')
 }
 
-export default productsApi
+export default searchApi

@@ -89,16 +89,6 @@ const Variations = ({variations, product}) => {
         setSelectedVari(defaultSelected)
     }, [uniqueVaris])
     
-
-    useEffect(() => {
-      console.log(selectedVari)
-    }, [selectedVari])
-    
-    const handleOnAdd = () => {
-        if (Object.keys(uniqueVaris).length !== Object.keys(selectedVari).length) return
-        
-        addRemove(new Item(product.id, selectedVari))
-    }
     
     return (
         <div>

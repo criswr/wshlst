@@ -105,7 +105,11 @@ const informacion = () => {
               />
 
               <button onClick={handleOnSaveUsername} disabled={usernameErr}>Guardar</button>
-              <button onClick={() => setChangeUsername(false)}>Cancelar</button>
+              <button onClick={() => {
+                setChangeUsername(false)
+                setUsernameErr(false)
+                setUsernameTaken(false)
+              }}>Cancelar</button>
             </div>
           }
 

@@ -83,10 +83,6 @@ export const mlConstants = {
           "name": "Libros, Revistas y Comics"
         },
         {
-          "id": "MLC1168",
-          "name": "Música y Películas"
-        },
-        {
           "id": "MLC3937",
           "name": "Relojes y Joyas"
         },

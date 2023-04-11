@@ -5,12 +5,12 @@ import React from 'react'
 
 
 
-const ItemCard = ({item, params}) => {
+const ItemCard = ({item}) => {
 
     return (
         <article>
             <ul>
-                <Link href={'/cat/[categories]/[product]'} as={'/cat/' + params.categories + '/' + item.id}>
+                <Link href={'/item/[product]'} as={'/item/' + item.id}>
                     <li>{item.title}</li>
                     <li>${item.price}</li>
                     <li>{item.permalink}</li>

@@ -1,10 +1,10 @@
 import { MlProductValidation } from "../../components/MlProductValidation"
 import { mlConstants } from "../../constants/mlConstants"
 
-export const getMlProducts = async (cat, offset) => {
+export const getMlProducts = async (query, offset, queryKey) => {
     
     try {
-        const fetchedProducts = fetch(`${mlConstants.mlApiUrl}sites/${mlConstants.mlSite}/search?category=${cat}&logistic_type=fulfillment&offset=${(offset - 1)*50}`)
+        const fetchedProducts = fetch(`${mlConstants.mlApiUrl}sites/${mlConstants.mlSite}/search?${queryKey}=${query}&logistic_type=fulfillment&offset=${(offset - 1)*50}`)
         .then(res => res.json())
         
         const {results} =  await fetchedProducts
