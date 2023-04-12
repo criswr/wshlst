@@ -2,13 +2,12 @@ import React from 'react'
 import Link from 'next/link'
 
 import { mlConstants } from '../../constants/mlConstants'
-import SearchBar from '../../components/SearchBar'
+
 
 
 const CategoriesLayout = async ({ children }) => {
     return (
         <div>
-            <SearchBar/>
             <section>
                 <ul>
                     {mlConstants.mlCategories.map((item) => (
