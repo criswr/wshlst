@@ -12,11 +12,10 @@ export default function RootLayout({ children }) {
 
  return (
     <html lang="es">
-      <body className="container mx-auto bg-grey">
-        <div className="container">
-
+      <body className="container-fluid mx-auto bg-grey">
         <Header />
-        {children}
+        <div className="container mx-auto">
+          {children}
         </div>
       </body>
     </html>

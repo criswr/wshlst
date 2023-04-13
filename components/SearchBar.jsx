@@ -23,7 +23,7 @@ const SearchBar = () => {
     
   return (
     <div className='w-full relative'>
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none md:hidden">
           <Image src={search} width={16} alt='search'/>
         </div>
         <input 
@@ -34,14 +34,15 @@ const SearchBar = () => {
             onChange={(e) => { setQuery(e.target.value) }}
             onSubmit={onSearch}
             onKeyDown={handleKeyDown}
-            className='block w-full p-2 pl-10 text-md rounded-sm bg-grey outline-none hover:bg-white focus:bg-white'
+            className='block w-full p-2 pl-10 md:pl-5 text-md rounded-sm bg-grey outline-none hover:bg-white focus:bg-white'
         />
 
+      <div className=''>
         <button 
           onClick={onSearch} 
-          className='hidden sm:inline'
-        >Buscar</button>
-
+          className='absolute inset-y-0 right-0 hidden md:flex items-center pr-3 pl-3'
+        ><Image src={search} width={16} alt='search'/></button>
+      </div>
     </div>
   )
 }

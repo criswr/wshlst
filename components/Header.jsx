@@ -9,7 +9,6 @@ import SearchBar from './SearchBar'
 import Image from 'next/image'
 
 import thirteen from '../public/thirteen.svg'
-import menu from '../public/menu.svg'
 
 
 const links = [
@@ -22,8 +21,8 @@ const links = [
         route: '/nosotros',
     },
     {
-        label: 'Items',
-        route: '/items/?cat=MLC1368',
+        label: 'Categorías',
+        route: '/categorias',
     },
     {
         label: 'Login',
@@ -36,25 +35,25 @@ const Header = () => {
     const [menuVisible, setMenuVisible] = useState(false)
 
     return (
-        <header className=''>
-            <div className={`bg-secondary flex flex-row space-x-4 px-4 py-2 z-50 relative ${ menuVisible && 'drop-shadow-lg' }`}>
-                <Image src={thirteen} alt='Wishlist' height={50} width={'auto'} />
-                <SearchBar/>
-                <button onClick={() => setMenuVisible(!menuVisible)}>
-                    <div className={`burger burger-rotate ${ menuVisible && 'open'}`}>
+        <header className='container-fluid bg-secondary'>
+            <div className='container mx-auto'>
 
-                    {/* <Image src={menu} alt='Menu' height={20} width={20} /> */}
-                    <div class="burger-lines"></div>
+            <div className={`bg-secondary flex flex-row space-x-4 px-4 py-2 z-50 relative ${ menuVisible && 'drop-shadow-lg' }`}>
+                <Image src={thirteen} alt='Wishlist' height={40} width={'auto'} />
+                <SearchBar/>
+                <button onClick={() => setMenuVisible(!menuVisible)} className='md:hidden'>
+                    <div className={`burger burger-rotate ${ menuVisible && 'open'}`}>
+                        <div class="burger-lines"></div>
                     </div>
                 </button>
 
             </div>
 
-            <div className={`${ menuVisible ? 'max-h-96 drop-shadow-lg' : 'max-h-0' } bg-grey z-40 relative transition-all ease-out duration-500`}>
-                <div className={`${ menuVisible ? ' translate-y-0' : ' -translate-y-full ' } transition-transform ease-out duration-500`}>
+            <div className={`${ menuVisible ? 'max-h-96 drop-shadow-lg' : 'max-h-0' } bg-grey md:bg-secondary md:text-grey z-40 relative transition-all ease-out duration-500 md:max-h-96`}>
+                <div className={`${ menuVisible ? ' translate-y-0' : ' -translate-y-full ' } transition-transform ease-out duration-500 md:translate-y-0 md:flex md:justify-center`}>
                     <ul className='md:flex md:flex-row md:space-x-4'>
                         {links.map(({ label, route }) => (
-                            <Link href={route} key={route}><li className='py-4 px-20 hover:px-28 active:px-28 hover:bg-white active:bg-white transition-all'>{label}</li></Link>
+                            <Link href={route} key={route}><li className='py-4 md:py-1 px-20 md:px-10 hover:px-28 active:px-28 active:md:px-10 hover:md:px-10 hover:bg-white active:bg-white transition-all hover:md:text-secondary active:md:text-secondary md:mb-2'>{label}</li></Link>
                             ))}
                     </ul>
                 </div>
@@ -64,6 +63,7 @@ const Header = () => {
                 <AccountSnippet />
             </SessionProvider> */}
             
+            </div>
         </header>
     )
 }

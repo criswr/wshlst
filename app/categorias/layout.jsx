@@ -1,9 +1,7 @@
 import React from 'react'
 
 
-
-
-const ItemsLayout =  ({ children }) => {
+const CategoriesLayout = ({ children }) => {
     return (
         <div className=''>
             {children}
@@ -11,4 +9,4 @@ const ItemsLayout =  ({ children }) => {
     )
 }
 
-export default ItemsLayout
+export default CategoriesLayout

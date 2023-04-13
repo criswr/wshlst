@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer'
 import ItemCard from '../../components/ItemCard'
 
 
-const Categories = () => {
+const Items = () => {
   const dataFetchedRef = useRef(false)
   
   const [currPage, setCurrPage] = useState(1)
@@ -89,4 +89,4 @@ const Categories = () => {
   )
 }
 
-export default Categories
+export default Items

@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global */
+
+.container-fluid {
+    max-width: 100%;
+}
+
 
 /* Burguer animation */
 .burger {
