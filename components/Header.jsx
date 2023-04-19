@@ -43,7 +43,7 @@ const Header = () => {
                 <SearchBar/>
                 <button onClick={() => setMenuVisible(!menuVisible)} className='md:hidden'>
                     <div className={`burger burger-rotate ${ menuVisible && 'open'}`}>
-                        <div class="burger-lines"></div>
+                        <div className="burger-lines"></div>
                     </div>
                 </button>
 

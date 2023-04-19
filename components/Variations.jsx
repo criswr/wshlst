@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { addRemove } from './AddRemove'
-import { Item } from './ItemClass'
+
 import AddButton from './AddButton'
 
-const Variations = ({variations, product}) => {
+const Variations = ({variations, product, wishlist}) => {
     const [selectedVari, setSelectedVari] = useState({})
     const [uniqueVaris, setUniqueVaris] = useState({})
 
@@ -49,9 +48,9 @@ const Variations = ({variations, product}) => {
             
         )) 
         if (!variExists) return true
-
     }
 
+    const isButtonSelected = (id, value) => selectedVari[id] === value
     
     useEffect(() => {
         const uniqueVarsIds = () => {
@@ -88,23 +87,29 @@ const Variations = ({variations, product}) => {
         }
         setSelectedVari(defaultSelected)
     }, [uniqueVaris])
-    
+
+/*     useEffect(() => {
+        console.log(selectedVari)
+    },[selectedVari])
+     */
     
     return (
         <div>
-            <p>Variations</p>
             {Object.keys(uniqueVaris).length !== 0 &&
                 <div>
                     {Object.keys(uniqueVaris).map((el) => (
                         <div key={el}>
-                            <p>{el}</p>
+                            <p className='font-semibold mt-4'>{el}:</p>
                                 {uniqueVaris[el].map((vari) => (
-                                    <button onClick={() => handleOnClick(el, vari)} key={vari} disabled={isButtonDisabled(el, vari)}>{vari}</button>
+                                    <button 
+                                        onClick={() => handleOnClick(el, vari)} key={vari} disabled={isButtonDisabled(el, vari)}
+                                        className={`bg-grey  text-gray font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow disabled:opacity-40 disabled:cursor-default ${isButtonSelected(el, vari) ? 'bg-primary hover:bg-primary' : 'hover:bg-white'}`}
+                                    >{vari}</button>
                                 ))}
                         </div>
                     ))}
 
-                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} />
+                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} wishlist={wishlist} view={'single'}/>
                 </div>
             }
         </div>

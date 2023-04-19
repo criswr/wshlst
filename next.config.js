@@ -10,6 +10,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**.mlstatic.com',
       },
+      {
+        protocol: 'http',
+        hostname: '**.mlstatic.com',
+      },
     ],
   },
 }

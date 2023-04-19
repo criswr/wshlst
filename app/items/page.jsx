@@ -2,26 +2,50 @@
 
 import React, { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
+import { getSession } from 'next-auth/react'
 import { useInView } from 'react-intersection-observer'
+
 import ItemCard from '../../components/ItemCard'
+import { mlConstants } from '../../constants/mlConstants'
 
 
 const Items = () => {
   const dataFetchedRef = useRef(false)
   
-  const [currPage, setCurrPage] = useState(1)
+  const [currPage, setCurrPage] = useState(0)
   const [prevPage, setPrevPage] = useState(0)
   const [itemsList, setItemsList] = useState([])
   const [wasLastList, setWasLastList] = useState(false)
+
+  const [wishlist, setWishlist] = useState()
   
   const [searchKey, setSearchKey] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
 
   const searchParams = useSearchParams()
   const catSearch = searchParams.get('cat')
+
+  useEffect(() => {
+    const findUser = async() => {
+      const session = await getSession()
+      if (session){
+        fetch('/api/user', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: session.user.email,
+          }),
+        })
+        .then(res => res.json())
+        .then(data => setWishlist(data.user.wishlist))
+      }
+    }
+    findUser()
+}, [])
   
   useEffect(() => {
-    
 
     const fetchMlProducts = (type, query, offset) => fetch(`/api/products/?${type}=${query}&offset=${offset}`, 
     { 
@@ -51,7 +75,7 @@ const Items = () => {
     setSearchKey(catSearch ? 'cat' : 'q')
     setSearchQuery(catSearch ? catSearch : searchParams.get('q'))
 
-    setCurrPage(1)
+    setCurrPage(0)
     setPrevPage(0)
     setWasLastList(false)
     setItemsList([])
@@ -74,13 +98,23 @@ const Items = () => {
   }
   return (
     <div>
+      <h1>
+        {
+          searchKey === 'cat' ?
+          mlConstants.mlCategories.find(elem => elem.id === searchQuery).name :
+          `Búsqueda: "${searchQuery}"`
+        }
+      </h1>
+
+      <div className='flex flex-wrap justify-around'>
       {itemsList.length ?
         itemsList.map((item) => (
-            <ItemCard item={ item } key={ item.id } />
-        ))
-      :
+          <ItemCard item={ item } key={ item.id } wishlist={wishlist} />
+          ))
+          :
           <p>Cargandooo</p>
-      }
+        }
+      </div>
 
       <div ref={ref}>
         <h2>Más productos?</h2>
