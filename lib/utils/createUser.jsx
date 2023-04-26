@@ -18,6 +18,10 @@ export const createUser = async (email, name) => {
                 status: true,
                 role: 'user',
                 wishlist: [],
+                timestamp: Date.now(),
+                config: {
+                    showBirthday: false
+                }
             })
 
         return { response: res }

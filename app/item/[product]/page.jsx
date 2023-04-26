@@ -10,6 +10,7 @@ import Variations from '../../../components/Variations'
 import AddButton from '../../../components/AddButton'
 import externalLink from '../../../public/externalLink.svg'
 import { price } from '../../../components/Price'
+import { LoadingPrice, LoadingTitle } from '../../../components/LoadingPlaceholders'
 
 //https://api.mercadolibre.com/items/MLC973984805?attributes=variations 
 
@@ -55,9 +56,11 @@ const Product =  ({params}) => {
 
     return (
         <div className='p-2 mt-2'>
-            <h1 className='mb-2 md:hidden'>
-                {product.title}
-            </h1>
+            {
+                product.title ?
+                <h1 className='mb-2 md:hidden'>{product.title}</h1> :
+                <LoadingTitle />
+            }
 
             <div className='flex flex-col md:flex-row gap-4'>
                 <div className='w-full rounded aspect-square flex items-center justify-center bg-white md:w-3/6'>
@@ -73,19 +76,28 @@ const Product =  ({params}) => {
                     </h1>
 
                     <div className='text-muted text-3xl'>
-                        {price(product.price)}
+                        {
+                            product.price ?
+                            price(product.price) :
+                            <LoadingPrice />
+                        }
 
                         {product.permalink &&
                             <Link href={product.permalink} target='_blank' className='text-base	ml-3'>Ver en MercadoLibre <Image src={externalLink} alt={'Ver en MercadoLibre'} width={15} height={15} className='inline'/></Link>
                         }
                     </div>
-                    
+
                     {
-                        variations.length 
-                        ? 
-                        <Variations variations={variations} product={product} wishlist={wishlist} /> 
-                        : 
-                        <AddButton product={product} wishlist={wishlist} view={'single'}/>
+                        product.title &&
+                        <div>
+                            {
+                                variations.length 
+                                ? 
+                                <Variations variations={variations} product={product} wishlist={wishlist} /> 
+                                : 
+                                <AddButton product={product} wishlist={wishlist} view={'single'}/>
+                            }
+                        </div>
                     }
                 </div>
             </div>

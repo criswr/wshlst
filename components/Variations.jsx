@@ -103,7 +103,7 @@ const Variations = ({variations, product, wishlist}) => {
                                 {uniqueVaris[el].map((vari) => (
                                     <button 
                                         onClick={() => handleOnClick(el, vari)} key={vari} disabled={isButtonDisabled(el, vari)}
-                                        className={`bg-grey  text-gray font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow disabled:opacity-40 disabled:cursor-default ${isButtonSelected(el, vari) ? 'bg-primary hover:bg-primary' : 'hover:bg-white'}`}
+                                        className={`bg-grey font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow disabled:opacity-40 disabled:cursor-default ${isButtonSelected(el, vari) ? 'bg-primary hover:bg-primary' : 'hover:bg-white'}`}
                                     >{vari}</button>
                                 ))}
                         </div>

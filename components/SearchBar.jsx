@@ -30,7 +30,7 @@ const SearchBar = () => {
             type='search' 
             name='search' 
             value={query}
-            placeholder='Busca productos para agregar...'
+            placeholder='Busca productos...'
             onChange={(e) => { setQuery(e.target.value) }}
             onSubmit={onSearch}
             onKeyDown={handleKeyDown}

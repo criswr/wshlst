@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer'
 
 import ItemCard from '../../components/ItemCard'
 import { mlConstants } from '../../constants/mlConstants'
+import { LoadingCardPlaceholder } from '../../components/LoadingPlaceholders'
 
 
 const Items = () => {
@@ -43,7 +44,7 @@ const Items = () => {
       }
     }
     findUser()
-}, [])
+  }, [])
   
   useEffect(() => {
 
@@ -107,17 +108,22 @@ const Items = () => {
       </h1>
 
       <div className='flex flex-wrap justify-around'>
-      {itemsList.length ?
+        {itemsList.length ?
         itemsList.map((item) => (
           <ItemCard item={ item } key={ item.id } wishlist={wishlist} />
           ))
-          :
-          <p>Cargandooo</p>
+        :
+          ''
         }
       </div>
 
       <div ref={ref}>
-        <h2>Más productos?</h2>
+        {
+          !wasLastList &&
+          <div className='w-full flex flex-wrap items-start	'>
+            <LoadingCardPlaceholder />
+          </div>
+        }
       </div>
     </div>
   )
