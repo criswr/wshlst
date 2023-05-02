@@ -1,11 +1,22 @@
-export const LoadingCardPlaceholder = () => (
-    <div className='p-4 w-80'>
-        <div className='animate-pulse flex items-center flex-col gap-2'>
-            <div className=' rounded bg-muted h-72 w-72'></div>
-            <div className=' rounded-full bg-muted h-8 w-72'></div>
+export const LoadingCardPlaceholder = () => {
+    const Product = () => (
+        <div className='w-80 mx-2 my-4'>
+            <div className='animate-pulse flex items-center flex-col gap-2'>
+                <div className='rounded bg-muted h-80 w-80'></div>
+                <div className='rounded-full bg-muted h-8 w-72 mt-5'></div>
+            </div>
         </div>
-    </div>
-)
+    )
+
+    return (
+        <div className='flex flex-wrap justify-around w-full'>
+            <Product />
+            <Product />
+            <Product />
+            <Product />
+        </div>
+    )
+}
 
 export const LoadingTitle = () => (
     <div className='p-2 mt-2 w-4/5'>

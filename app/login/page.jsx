@@ -27,7 +27,7 @@ const Login = () => {
                 .then(data => !data.user.username && router.push('/cuenta/informacion'))
 
                 newUser(session.user.email, session.user.name)
-
+                
                 router.push('/cuenta')
             }
         }

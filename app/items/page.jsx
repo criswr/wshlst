@@ -98,7 +98,7 @@ const Items = () => {
     handleOnScroll()
   }
   return (
-    <div>
+    <div className='w-full mx-2'>
       <h1>
         {
           searchKey === 'cat' ?
@@ -117,12 +117,12 @@ const Items = () => {
         }
       </div>
 
-      <div ref={ref}>
+      <div ref={ref} className='w-full'>
         {
           !wasLastList &&
-          <div className='w-full flex flex-wrap items-start	'>
+          
             <LoadingCardPlaceholder />
-          </div>
+          
         }
       </div>
     </div>

@@ -5,7 +5,7 @@ import React from 'react'
 
 const ItemsLayout =  ({ children }) => {
     return (
-        <div className=''>
+        <div className='w-full'>
             {children}
         </div>
     )
