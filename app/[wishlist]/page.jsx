@@ -59,6 +59,7 @@ const Wishlist = ({ params }) => {
                 }
                 fetchFavedMlProducts(user)
             
+        
 
             const findLoggedUser = async() => {
                 const session = await getSession()
@@ -78,6 +79,8 @@ const Wishlist = ({ params }) => {
             }
             findLoggedUser()
         }
+
+        user && !user.wishlist.length && setItemsLoaded(true)
     }, [user])
 
     useEffect(() => {
@@ -162,6 +165,7 @@ const Wishlist = ({ params }) => {
                         </div>
                     </div>
                     <div className='flex flex-col gap-5 grow md:w-2/3'>
+                        <h2 className='mt-1'>Favoritos de {user.name}</h2>
                     {
                         items.length
                     ?

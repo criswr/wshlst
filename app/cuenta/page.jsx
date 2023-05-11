@@ -26,14 +26,10 @@ const cuenta = () => {
       img: iconInformation,
     },
     {
-      label: 'Editar perfil',
-      route: '/cuenta/informacion',
-      img: iconProfile,
-    },
-    {
       label: 'Soporte',
-      route: '/cuenta/informacion',
+      route: 'https://locu.cl/soporte/',
       img: iconSupport,
+      target: '_blank'
     },
   ]
 
@@ -64,7 +60,7 @@ const cuenta = () => {
         <div className='flex flex-col flex-1 w-full max-w-4xl'>
           <ul>
               {links.map((item) => (
-                <Link href={item.route} key={item.label}>
+                <Link href={item.route} key={item.label} target={item.target}>
                       <li className='my-4 py-5 px-6 rounded bg-white hover:bg-grey flex flex-row justify-between content-center'>
                           <div className='flex flex-row content-center gap-3'>
                               <Image src={item.img} height={25} alt={item.label} />
