@@ -102,7 +102,7 @@ const Items = () => {
       <h1>
         {
           searchKey === 'cat' ?
-          mlConstants.mlCategories.find(elem => elem.id === searchQuery).name :
+          `Categoría ${mlConstants.mlCategories.find(elem => elem.id === searchQuery).name}` :
           `Búsqueda: "${searchQuery}"`
         }
       </h1>
@@ -119,10 +119,7 @@ const Items = () => {
 
       <div ref={ref} className='w-full'>
         {
-          !wasLastList &&
-          
-            <LoadingCardPlaceholder />
-          
+          !wasLastList && <LoadingCardPlaceholder />
         }
       </div>
     </div>

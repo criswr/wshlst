@@ -23,7 +23,7 @@ const userApi = async (req, res) => {
 
             const { user } = await getUser(body.email)
 
-            if (!user){
+            if (!user && body.name){
                 const { response, error} = await createUser(body.email, body.name)
                 if (error) throw new Error(error)
                 return res.status(200).json({ response })

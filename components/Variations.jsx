@@ -109,7 +109,7 @@ const Variations = ({variations, product, wishlist}) => {
                         </div>
                     ))}
 
-                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} wishlist={wishlist} view={'single'}/>
+                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} wishlist={wishlist} single={true}/>
                 </div>
             }
         </div>

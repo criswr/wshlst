@@ -23,7 +23,7 @@ export const createUser = async (email, name) => {
                 username: '',
                 img: '',
                 address: {},
-                birthday: 0,
+                birthdate: '',
                 status: true,
                 role: 'user',
                 wishlist: [],

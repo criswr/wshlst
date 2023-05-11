@@ -70,7 +70,7 @@ const Product =  ({params}) => {
                 }
                 </div>
 
-                <div className='border border-muted shadow p-4 rounded bg-white overflow-hidden relative md:w-3/6 flex flex-col gap-8 h-full'>
+                <div className='border border-muted shadow p-4 rounded bg-white relative md:w-3/6 flex flex-col gap-8 h-full'>
                     <h1 className='hidden md:block'>
                         {product.title}
                     </h1>
@@ -95,7 +95,7 @@ const Product =  ({params}) => {
                                 ? 
                                 <Variations variations={variations} product={product} wishlist={wishlist} /> 
                                 : 
-                                <AddButton product={product} wishlist={wishlist} view={'single'}/>
+                                <AddButton product={product} wishlist={wishlist} single={true}/>
                             }
                         </div>
                     }

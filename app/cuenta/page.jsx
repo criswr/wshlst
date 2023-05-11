@@ -1,9 +1,10 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
@@ -12,12 +13,17 @@ import arrowCircleRight from '../../public/arrowCircleRight.svg'
 import iconInformation from '../../public/iconInformation.svg'
 import iconProfile from '../../public/iconProfile.svg'
 import iconSupport from '../../public/iconSupport.svg'
-import { useRouter } from 'next/navigation'
 
 
 const cuenta = () => {
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal) 
   const router = useRouter()
+  const { data } = useSession()
+
+  useEffect(() => {
+    if (data === null) router.push('/login')
+  }, [data])
+  
 
   const links = [
     {
@@ -47,7 +53,6 @@ const cuenta = () => {
     }).then((result) => {
         if (result.isConfirmed) {
           signOut()
-          router.push('/login')
         }
     })
  }

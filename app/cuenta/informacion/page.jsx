@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 import Swal from 'sweetalert2'
@@ -12,10 +13,15 @@ import AccountSettingsCard from '../../../components/AccountSettingsCard'
 import UploadProfilePicture from '../../../components/UploadProfilePicture'
 
 const informacion = () => {
-  const { data } = useSession()
   const MySwal = withReactContent(Swal)
-
+  const { data } = useSession()
+  const router = useRouter()
   const [user, setUser] = useState()
+  
+  useEffect(() => {
+    if (data === null) router.push('/login')
+  }, [data])
+  
 
   const Toast = MySwal.mixin({
     toast: true,
@@ -57,7 +63,7 @@ const informacion = () => {
     
     if (data) {
       const un = data.toLowerCase()
-      handleOnSave({newusername: un})
+      handleOnSave({newUsername: un})
     }
   }
 
@@ -143,6 +149,7 @@ const informacion = () => {
           icon: 'error',
           title: data.error
         })
+        console.log(data.error);
       }
     })
   }
@@ -173,8 +180,8 @@ const informacion = () => {
   }, [user])
   
   const birthdate = date => {
-    const birthday = new Date(date)
     if (!date) return null
+    const birthday = new Date(date)
     return birthday.toLocaleDateString('es-ES')
 }
 
@@ -186,9 +193,9 @@ const informacion = () => {
         <div className='w-full max-w-4xl md:space-y-7'>
           <UploadProfilePicture img={user?.img} email={user?.email} uuid={user?.uuid} onSave={handleOnSave}/>
           <AccountSettingsCard label={'Nombre'} value={user?.name} onClick={handleOnChangeName} />
-          <AccountSettingsCard label={'Nombre de usuario'} value={user?.username} onClick={handleOnChangeUsername} />
+          <AccountSettingsCard label={'Nombre de usuario'} value={user?.username || 'Sin información'} onClick={handleOnChangeUsername} />
           <AccountSettingsCard label={'Email'} value={user?.email}  />
-          <AccountSettingsCard label={'Cumpleaños'} value={birthdate(user?.birthdate)} onClick={handleOnChangeBirthdate} 
+          <AccountSettingsCard label={'Cumpleaños'} value={birthdate(user?.birthdate) || 'Sin información'} onClick={handleOnChangeBirthdate} 
             toggle={{
               label: 'Mostrar cuenta regresiva en el perfil',
               checked: user?.config.showBirthday,

@@ -92,18 +92,17 @@ h3 {
 
 
 /* Heart animation */
-
-.like {
-    width: 500px;
-    height: 500px;
-    transform: scale(0);
-    transition: transform 800ms ease-in-out;
+@keyframes likeAnimation {
+    0%   { transform: scale(5) rotate(25deg); }
+    100% { transform: scale(1) rotate(0); }
 }
 
-.unlike {
-    width: 0;
-    transform: scale(3);
-
+.like {
+	animation-name: likeAnimation;
+	animation-iteration-count: 1;
+	animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+	animation-duration: 300ms;
 }
 
 
