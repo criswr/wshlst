@@ -60,7 +60,8 @@ const cuenta = () => {
   return (
     <div className='mx-2 flex flex-col w-full'>
         <h1>Ajustes</h1>
-        <div className='flex flex-col flex-1'>
+      <div className='flex flex-col items-center'>
+        <div className='flex flex-col flex-1 w-full max-w-4xl'>
           <ul>
               {links.map((item) => (
                 <Link href={item.route} key={item.label}>
@@ -76,7 +77,8 @@ const cuenta = () => {
           </ul>
         </div>
 
-        <button onClick={handleSignOut} className='text-muted font-semibold my-5 py-1 w-full border border-muted rounded shadow hover:bg-white hover:text-black'>Cerrar sesión</button>
+        <button onClick={handleSignOut} className='text-muted font-semibold my-5 py-1 px-3 w-full md:w-fit border border-muted rounded shadow hover:bg-white hover:text-black'>Cerrar sesión</button>
+      </div>
     </div>
   )
 }

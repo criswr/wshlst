@@ -9,6 +9,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { forbiddenUsernames } from './ForbiddenUsernames'
 import BackButton from '../../../components/BackButton'
 import AccountSettingsCard from '../../../components/AccountSettingsCard'
+import UploadProfilePicture from '../../../components/UploadProfilePicture'
 
 const informacion = () => {
   const { data } = useSession()
@@ -96,13 +97,13 @@ const informacion = () => {
 
   const handleOnChangeConfig = ({config}) => {
     if (config === 'birthday'){
+      if (!user.birthdate) return handleOnChangeBirthdate()
       handleOnSave({newConfig: {...user.config, showBirthday: !user.config.showBirthday}})
     }
-
   }
 
 
-  const handleOnSave = ({newName, newUsername, newBirthdate, newConfig}) => {
+  const handleOnSave = ({newName, newImg, newUsername, newBirthdate, newConfig}) => {
     fetch('/api/settings', {
         method: 'PUT',
         headers: {
@@ -111,6 +112,7 @@ const informacion = () => {
         body: JSON.stringify({
             email: user.email,
             ... newName ? {newName: newName} : {},
+            ... newImg ? {newImg: newImg} : {},
             ... newUsername ? {newUsername: newUsername} : {},
             ... newBirthdate ? {newBirthdate: newBirthdate} : {},
             ... newConfig ? {newConfig: newConfig} : {},
@@ -121,6 +123,7 @@ const informacion = () => {
       if (data.response){
         setUser({...user, 
           ... newName ? {name: newName} : {},
+          ... newImg ? {img: newImg} : {},
           ... newUsername ? {username: newUsername} : {},
           ... newBirthdate ? {birthdate: newBirthdate} : {},
           ... newConfig ? {config: {
@@ -179,19 +182,22 @@ const informacion = () => {
     <div className='w-full p-2'>
       <BackButton />
       <h1>Información de la cuenta</h1>
-      <AccountSettingsCard label={'Nombre'} value={user?.name} onClick={handleOnChangeName} />
-      <AccountSettingsCard label={'Nombre de usuario'} value={user?.username} onClick={handleOnChangeUsername} />
-      <AccountSettingsCard label={'Email'} value={user?.email}  />
-      <AccountSettingsCard label={'Cumpleaños'} value={birthdate(user?.birthdate)} onClick={handleOnChangeBirthdate} 
-        toggle={{
-          label: 'Mostrar cuenta regresiva en el perfil',
-          checked: user?.config.showBirthday,
-          onToggle: () => {handleOnChangeConfig({config: 'birthday'})},
-        }} 
-      />
-
+      <div className='flex flex-col items-center'>
+        <div className='w-full max-w-4xl md:space-y-7'>
+          <UploadProfilePicture img={user?.img} email={user?.email} uuid={user?.uuid} onSave={handleOnSave}/>
+          <AccountSettingsCard label={'Nombre'} value={user?.name} onClick={handleOnChangeName} />
+          <AccountSettingsCard label={'Nombre de usuario'} value={user?.username} onClick={handleOnChangeUsername} />
+          <AccountSettingsCard label={'Email'} value={user?.email}  />
+          <AccountSettingsCard label={'Cumpleaños'} value={birthdate(user?.birthdate)} onClick={handleOnChangeBirthdate} 
+            toggle={{
+              label: 'Mostrar cuenta regresiva en el perfil',
+              checked: user?.config.showBirthday,
+              onToggle: () => {handleOnChangeConfig({config: 'birthday'})},
+            }} 
+          />
+        </div>
+      </div>
     </div>
-
   )
 }
 

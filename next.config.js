@@ -14,6 +14,10 @@ const nextConfig = {
         protocol: 'http',
         hostname: '**.mlstatic.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**.googleapis.com',
+      },
     ],
   },
 }

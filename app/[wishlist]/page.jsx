@@ -155,7 +155,7 @@ const Wishlist = ({ params }) => {
 
                         <div className='py-3 text-center md:text-left'>
                             {
-                                user.config.showBirthday &&
+                                user.config.showBirthday && user.birthdate &&
                                 <p className='font-bold'>{daysToBirthday(user.birthdate)}</p>
                             }
                             <p>Usuario desde el {userSince(user.timestamp)}</p>

@@ -1,6 +1,4 @@
-'use client'
-
-import React, { useState } from 'react'
+import React from 'react'
 
 import edit from '../public/edit.svg'
 import Image from 'next/image'

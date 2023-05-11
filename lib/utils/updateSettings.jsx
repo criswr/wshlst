@@ -4,7 +4,7 @@ import { dbInit } from "./dbInit";
 
 let response
 
-export const updateSettings = async ({email, newUsername, newName, newBirthdate, newConfig}) => {
+export const updateSettings = async ({email, newUsername, newName, newBirthdate, newConfig, newImg}) => {
     try {
         if (!response) response = await dbInit(dbConstants.mainDb, dbConstants.usersColl)
 
@@ -45,7 +45,15 @@ export const updateSettings = async ({email, newUsername, newName, newBirthdate,
             .updateOne(emailQuery, { $set: { 'config' : newConfig } })
             
             return { response: res }
+        }
+
+        if (newImg) {
+            const res = await response
+            .updateOne(emailQuery, { $set: { 'img' : newImg } })
+            
+            return { response: res }
         } 
+
     }catch (error){
         throw new Error('Hubo un error, intenta en un momento')
     }
