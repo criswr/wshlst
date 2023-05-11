@@ -1,4 +1,4 @@
-export const LoadingCardPlaceholder = () => {
+export const LoadingCardPlaceholder2 = () => {
     const Product = () => (
         <div className='w-80 mx-2 my-4'>
             <div className='animate-pulse flex items-center flex-col gap-2'>
@@ -15,6 +15,24 @@ export const LoadingCardPlaceholder = () => {
             <Product />
             <Product />
         </div>
+    )
+}
+
+export const LoadingCardPlaceholder = () => {
+    const Product = () => (
+        <div className='w-80 mx-2 my-4'>
+            <div className='animate-pulse flex items-center flex-col gap-2'>
+                <div className='rounded bg-muted h-80 w-80'></div>
+                <div className='rounded-full bg-muted h-8 w-72 mt-5'></div>
+            </div>
+        </div>
+    )
+
+    return (
+
+            <Product />
+
+
     )
 }
 

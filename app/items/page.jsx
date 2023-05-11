@@ -80,6 +80,7 @@ const Items = () => {
     setPrevPage(0)
     setWasLastList(false)
     setItemsList([])
+    dataFetchedRef.current = false
   }, [searchParams])
   
   
@@ -115,13 +116,11 @@ const Items = () => {
         :
           ''
         }
-      </div>
-
-      <div ref={ref} className='w-full'>
-        {
-          !wasLastList && <LoadingCardPlaceholder />
+                {
+          !wasLastList && <div ref={ref}><LoadingCardPlaceholder/></div>
         }
       </div>
+
     </div>
   )
 }
