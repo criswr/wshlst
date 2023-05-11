@@ -1,8 +1,10 @@
+import { getMlProducts } from "../../../../lib/utils/getMlProducts"
+
 const searchApi = async (req, res) => {
     if (req.method === 'GET'){
         try {
             const { query } = req.query
-            const body = req.body //JSON.parse(req.body)
+            const body = req.body //    JSON.parse(req.body)
             const queryKey = 'q'
             const { result, error } = await getMlProducts(query, body.offset, queryKey)
             if (error) throw new Error(error)

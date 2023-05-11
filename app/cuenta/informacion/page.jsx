@@ -12,7 +12,7 @@ import BackButton from '../../../components/BackButton'
 import AccountSettingsCard from '../../../components/AccountSettingsCard'
 import UploadProfilePicture from '../../../components/UploadProfilePicture'
 
-const informacion = () => {
+const Informacion = () => {
   const MySwal = withReactContent(Swal)
   const { data } = useSession()
   const router = useRouter()
@@ -46,7 +46,7 @@ const informacion = () => {
   }
 
   const handleOnChangeUsername = async () => {
-    const validUsername = new RegExp ('^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$')
+    const validUsername = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
   
     const { value: data } = await MySwal.fire({
       ... swalConfig,
@@ -68,7 +68,7 @@ const informacion = () => {
   }
 
   const handleOnChangeName = async () => {
-    const validName = new RegExp ('^[a-zA-Z0-9~$^_?¿!¡. -]*$')
+    const validName = /^[a-zA-Z0-9~$^_?¿!¡. -]*$/
 
     const { value: data } = await MySwal.fire({
       ... swalConfig,
@@ -192,10 +192,10 @@ const informacion = () => {
       <div className='flex flex-col items-center'>
         <div className='w-full max-w-4xl md:space-y-7'>
           <UploadProfilePicture img={user?.img} email={user?.email} uuid={user?.uuid} onSave={handleOnSave}/>
-          <AccountSettingsCard label={'Nombre'} value={user?.name} onClick={handleOnChangeName} />
-          <AccountSettingsCard label={'Nombre de usuario'} value={user?.username || 'Sin información'} onClick={handleOnChangeUsername} />
-          <AccountSettingsCard label={'Email'} value={user?.email}  />
-          <AccountSettingsCard label={'Cumpleaños'} value={birthdate(user?.birthdate) || 'Sin información'} onClick={handleOnChangeBirthdate} 
+          <AccountSettingsCard label='Nombre' value={user?.name} onClick={handleOnChangeName} />
+          <AccountSettingsCard label='Nombre de usuario' value={user?.username || 'Sin información'} onClick={handleOnChangeUsername} />
+          <AccountSettingsCard label='Email' value={user?.email}  />
+          <AccountSettingsCard label='Cumpleaños' value={birthdate(user?.birthdate) || 'Sin información'} onClick={handleOnChangeBirthdate} 
             toggle={{
               label: 'Mostrar cuenta regresiva en el perfil',
               checked: user?.config.showBirthday,
@@ -208,4 +208,4 @@ const informacion = () => {
   )
 }
 
-export default informacion
+export default Informacion

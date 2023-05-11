@@ -5,7 +5,6 @@ const productsApi = async (req, res) => {
     if (req.method === 'GET'){
         try {
             const { cat, q, offset } = req.query
-            const body = req.body //JSON.parse(req.body)
             const queryKey = cat ? 'category' : 'q'
             const query = cat || q
             const { result, error } = await getMlProducts(query, offset, queryKey)

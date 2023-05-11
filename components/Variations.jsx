@@ -87,11 +87,6 @@ const Variations = ({variations, product, wishlist}) => {
         }
         setSelectedVari(defaultSelected)
     }, [uniqueVaris])
-
-/*     useEffect(() => {
-        console.log(selectedVari)
-    },[selectedVari])
-     */
     
     return (
         <div>
@@ -109,7 +104,7 @@ const Variations = ({variations, product, wishlist}) => {
                         </div>
                     ))}
 
-                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} wishlist={wishlist} single={true}/>
+                    <AddButton product={product} uniqueVaris={uniqueVaris} selectedVari={selectedVari} wishlist={wishlist} single/>
                 </div>
             }
         </div>

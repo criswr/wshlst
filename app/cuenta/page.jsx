@@ -11,11 +11,10 @@ import withReactContent from 'sweetalert2-react-content'
 
 import arrowCircleRight from '../../public/arrowCircleRight.svg'
 import iconInformation from '../../public/iconInformation.svg'
-import iconProfile from '../../public/iconProfile.svg'
 import iconSupport from '../../public/iconSupport.svg'
 
 
-const cuenta = () => {
+const Cuenta = () => {
   const MySwal = withReactContent(Swal) 
   const router = useRouter()
   const { data } = useSession()
@@ -84,4 +83,4 @@ const cuenta = () => {
   )
 }
 
-export default cuenta
+export default Cuenta

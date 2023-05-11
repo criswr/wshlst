@@ -12,8 +12,6 @@ import externalLink from '../../../public/externalLink.svg'
 import { price } from '../../../components/Price'
 import { LoadingPrice, LoadingTitle } from '../../../components/LoadingPlaceholders'
 
-//https://api.mercadolibre.com/items/MLC973984805?attributes=variations 
-
 const Product =  ({params}) => {
     const [wishlist, setWishlist] = useState()
     const [product, setProduct] = useState({})
@@ -83,7 +81,7 @@ const Product =  ({params}) => {
                         }
 
                         {product.permalink &&
-                            <Link href={product.permalink} target='_blank' className='text-base	ml-3'>Ver en MercadoLibre <Image src={externalLink} alt={'Ver en MercadoLibre'} width={15} height={15} className='inline'/></Link>
+                            <Link href={product.permalink} target='_blank' className='text-base	ml-3'>Ver en MercadoLibre <Image src={externalLink} alt='Ver en MercadoLibre' width={15} height={15} className='inline'/></Link>
                         }
                     </div>
 
@@ -95,7 +93,7 @@ const Product =  ({params}) => {
                                 ? 
                                 <Variations variations={variations} product={product} wishlist={wishlist} /> 
                                 : 
-                                <AddButton product={product} wishlist={wishlist} single={true}/>
+                                <AddButton product={product} wishlist={wishlist} single/>
                             }
                         </div>
                     }

@@ -10,7 +10,7 @@ export const createUser = async (email, name) => {
         const uuid = () => {
             return 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'.replace(/[x]/g,
             (c) => {
-               const id = Math.random() * 16 | 0, v = c == 'x' ? id : (id & 0x3 | 0x8)
+               const id = Math.random() * 16 | 0
                return id.toString(16)
             })
         }

@@ -36,18 +36,3 @@ export const getUserByUsername = async (username) => {
         throw new Error('Username not found')
     }
 }
-
-
-const getresponse = async () => {
-    try {
-        if (!response) await init()
-        const res = await response
-            .find({})
-            .limit(20)
-            .map(user => ({ ...user, _id: user._id.toString() }))
-            .toArray()
-        return { response: res }
-    }catch (error){
-        throw new Error('Cant get response')
-    }
-}

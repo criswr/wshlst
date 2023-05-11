@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { getSession } from 'next-auth/react'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
+import { useRouter } from 'next/navigation'
 
 import { addRemove } from './AddRemove'
 import { Item } from './ItemClass'
@@ -12,6 +13,8 @@ import { Item } from './ItemClass'
 const AddButton = ({ product, uniqueVaris, selectedVari, wishlist, single }) => {
     const [isOnWishlist, setIsOnWishlist] = useState(false)
     const [recentlyAdded, setRecentlyAdded] = useState(false)
+
+    const router = useRouter()
     
     useEffect(() => {
         if (wishlist) {

@@ -14,7 +14,7 @@ const userApi = async (req, res) => {
 
     if (req.method === 'POST'){
         try {
-            const body = req.body //JSON.parse(req.body)
+            const body = req.body //    JSON.parse(req.body)
 
             if (body.username){
                 const { user } = await getUserByUsername(body.username)

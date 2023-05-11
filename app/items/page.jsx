@@ -74,7 +74,7 @@ const Items = () => {
 
   useEffect(() => {
     setSearchKey(catSearch ? 'cat' : 'q')
-    setSearchQuery(catSearch ? catSearch : searchParams.get('q'))
+    setSearchQuery(catSearch || searchParams.get('q'))
 
     setCurrPage(0)
     setPrevPage(0)
@@ -108,6 +108,9 @@ const Items = () => {
         }
       </h1>
 
+
+
+
       <div className='flex flex-wrap justify-around'>
         {itemsList.length ?
         itemsList.map((item) => (
@@ -116,7 +119,8 @@ const Items = () => {
         :
           ''
         }
-                {
+
+        {
           !wasLastList && <div ref={ref}><LoadingCardPlaceholder/></div>
         }
       </div>

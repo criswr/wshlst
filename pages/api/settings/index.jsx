@@ -4,7 +4,7 @@ const settingApi = async (req, res) => {
 
     if (req.method === 'PUT'){
         try {
-            const body = req.body //JSON.parse(req.body)
+            const body = req.body //    JSON.parse(req.body)
             
             const { response, error} = await updateSettings(body)
             if (error) throw new Error(error)

@@ -61,14 +61,14 @@ const WishlistItemCard = ({item, wishlist, isOwner}) => {
         <article className={`bg-white p-2 flex gap-5 ${isDeleted && 'opacity-50'}`}>
             <div className='flex gap-5 grow'>
 
-                <Link href={'/item/[product]'} as={'/item/' + item.id}>
+                <Link href='/item/[product]' as={'/item/' + item.id}>
                     <div className='w-40 h-40 rounded shadow-lg aspect-square'>
                         <Image src={image} alt={item.title} width={0} height={0} sizes='100vh' className='w-full h-full object-contain' />
                     </div>
                 </Link>
 
                 <div>
-                    <Link href={'/item/[product]'} as={'/item/' + item.id}>
+                    <Link href='/item/[product]' as={'/item/' + item.id}>
                         <h2 className='leading-5 text-lg'>{title(item.title)}</h2>
                         {
                             isVariable &&
@@ -77,7 +77,7 @@ const WishlistItemCard = ({item, wishlist, isOwner}) => {
                         <p className=''>{price(item.price)}</p>
                     </Link>
 
-                    <Link href={item.permalink} target='_blank' className='text-base text-muted'>Ver en MercadoLibre <Image src={externalLink} alt={'Ver en MercadoLibre'} width={15} height={15} className='inline'/></Link>
+                    <Link href={item.permalink} target='_blank' className='text-base text-muted'>Ver en MercadoLibre <Image src={externalLink} alt='Ver en MercadoLibre' width={15} height={15} className='inline'/></Link>
                 </div>
             </div>
             {

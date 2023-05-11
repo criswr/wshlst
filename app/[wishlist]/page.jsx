@@ -15,7 +15,6 @@ import empty from '../../public/empty.svg'
 import noUser from '../../public/noUser.svg'
 import { LoadingUser, LoadingWishlistCard } from '../../components/LoadingPlaceholders'
 
-
 const Wishlist = ({ params }) => {
     const [user, setUser] = useState()
     const [items, setItems] = useState([])
@@ -58,8 +57,6 @@ const Wishlist = ({ params }) => {
                     })
                 }
                 fetchFavedMlProducts(user)
-            
-        
 
             const findLoggedUser = async() => {
                 const session = await getSession()
@@ -88,7 +85,6 @@ const Wishlist = ({ params }) => {
             user.email === loggedUser.email && setIsOwner(true)
         }
     }, [loggedUser])
-
     
     const daysToBirthday = date => {
         const birthdate = new Date(date)
@@ -112,7 +108,6 @@ const Wishlist = ({ params }) => {
         const options = { year: 'numeric', month: 'long', day: 'numeric' }
         return timestamp.toLocaleDateString('es-ES', options)
     }
-
 
     const handleOnShare = text => {
         const MySwal = withReactContent(Swal)
@@ -175,9 +170,9 @@ const Wishlist = ({ params }) => {
                     :
                         itemsLoaded ?
                         <div className='w-full bg-white rounded py-20 flex flex-col items-center gap-5'>
-                            <Image src={empty} alt='Lista vacía' width={'auto'} height={400}></Image>
+                            <Image src={empty} alt='Lista vacía' width='auto' height={400} />
                             <h2>Aún no hay nada por aquí</h2>
-                            <Link href={'/categorias'}>
+                            <Link href='/categorias'>
                                 <button className='bg-grey font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow hover:bg-white'>Explorar productos</button>
                             </Link>
                         </div> :
@@ -196,10 +191,10 @@ const Wishlist = ({ params }) => {
             userLoaded && !user && 
 
                 <div className='w-full rounded py-10 px-2 flex flex-col items-center gap-5'>
-                    <Image src={noUser} alt='No hay usuario' width={'auto'} height={400}></Image>
+                    <Image src={noUser} alt='No hay usuario' width='auto' height={400} />
                     <h2>No encontramos al usuario {params.wishlist}</h2>
                     <p className='text-center max-w-screen-sm'>Seguramente sufrió combustión espontánea, es decir que ya no existe debido a fuego originado sin una fuente externa aparente de ignición, que probablemente comenzó dentro del cuerpo de la persona. Eso o el nombre de usuario está mal escrito.</p>
-                    <Link href={'/'}>
+                    <Link href='/'>
                         <button className='bg-grey font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow hover:bg-white'>Volver</button>
                     </Link>
                 </div>

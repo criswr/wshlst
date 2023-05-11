@@ -73,15 +73,15 @@ const Header = () => {
 
                 <div className={`bg-secondary flex flex-row space-x-4 px-4 py-2 z-50 relative ${ menuVisible && 'drop-shadow-lg' }`}>
 
-                    <Link href={'/'} className='relative h-10 w-28 min-w-fit' >
-                        <Image src={mgtaLogo} alt='MGTA' height={'auto'} width={100} className='object-cover' />
+                    <Link href='/' className='relative h-10 w-28 min-w-fit' >
+                        <Image src={mgtaLogo} alt='MGTA' height='auto' width={100} className='object-cover' />
                     </Link>
 
                     <SearchBar/>
 
                     <button onClick={() => setMenuVisible(!menuVisible)} className='md:hidden'>
                         <div className={`burger burger-rotate ${ menuVisible && 'open'}`}>
-                            <div className="burger-lines"></div>
+                            <div className="burger-lines" />
                         </div>
                     </button>
 

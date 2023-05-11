@@ -18,8 +18,8 @@ const UploadProfilePicture = ({img, uuid, onSave}) => {
     const handleCompressedUpload = (e) => {
         const image = e.target.files[0]
         if (!image) return
-
-        new Compressor(image, {
+        const compressor = new Compressor()
+        compressor(image, {
         quality: 0.4,
         width: 200,
         height: 200,
@@ -64,8 +64,8 @@ const UploadProfilePicture = ({img, uuid, onSave}) => {
             />
 
             <label className='cursor-pointer relative flex justify-center items-center hover:opacity-50' htmlFor='profilePic'>
-                <Image height={100} width={100} alt='Foto de perfil' className={`rounded-full ${pictureUploading && 'opacity-40'}`} src={picture ? picture : profileIcon}/>
-                <Spinner className={`absolute ${pictureUploading ? '' : 'hidden'}`} color={'black'} />
+                <Image height={100} width={100} alt='Foto de perfil' className={`rounded-full ${pictureUploading && 'opacity-40'}`} src={picture || profileIcon}/>
+                <Spinner className={`absolute ${pictureUploading ? '' : 'hidden'}`} color='black' />
             </label>
         </div>
     )
