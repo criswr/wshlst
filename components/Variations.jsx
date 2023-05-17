@@ -7,6 +7,7 @@ import AddButton from './AddButton'
 const Variations = ({variations, product, wishlist}) => {
     const [selectedVari, setSelectedVari] = useState({})
     const [uniqueVaris, setUniqueVaris] = useState({})
+    const [variationsArr, setVariationsArr] = useState([])
 
     const handleOnClick = (id, value) => {
         if (id in selectedVari){
@@ -36,18 +37,15 @@ const Variations = ({variations, product, wishlist}) => {
 
         if (Object.keys(selectedVari).length === 1 && Object.keys(selectedVari)[0] === id) return false
 
-        const isVariAvailable = (comb) => {
-            for (const elem in selectedVari) {
-                return comb.name === elem && comb.value_name === selectedVari[elem]
-            }
-        }
+        if (!variationsArr.some(vari => {
+            const variationValues = Object.values(vari)
+            const selectiedValues = Object.values(selectedVari)
 
-        const variExists = variations.some((el) => (
-            el.attribute_combinations.some((comb) => comb.name === id && comb.value_name === value) &&
-            el.attribute_combinations.some((comb) => isVariAvailable(comb))
-            
-        )) 
-        if (!variExists) return true
+            return variationValues.includes(value) && selectiedValues.every(selected => variationValues.includes(selected))
+
+        })) return true
+
+        return false
     }
 
     const isButtonSelected = (id, value) => selectedVari[id] === value
@@ -87,6 +85,24 @@ const Variations = ({variations, product, wishlist}) => {
         }
         setSelectedVari(defaultSelected)
     }, [uniqueVaris])
+/* 
+    useEffect(() => {
+        console.log('variations', variationsArr)
+        console.log('selected', selectedVari)
+    }, [variationsArr, selectedVari]) */
+
+    useEffect(() => {
+        let arr = []
+        for (const vari of variations) {
+            let varObj = []
+            for (const val of vari.attribute_combinations) {
+                varObj = {...varObj, ...{[val.name]: val.value_name} }
+            }
+            arr = [...arr, {...varObj}]
+        }
+        setVariationsArr(arr)
+    }, [variations])
+    
     
     return (
         <div>

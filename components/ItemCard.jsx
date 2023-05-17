@@ -17,7 +17,7 @@ const ItemCard = ({item, wishlist}) => {
         return str
     }
 
-    const isVariable = item.hasOwnProperty('variations_data')
+    const isVariable = Object.prototype.hasOwnProperty.call(item, 'variations_data')
 
     return (
         <article className='bg-white mx-2 my-4 group relative flex flex-wrap items-center justify-center w-80 rounded drop-shadow'>
