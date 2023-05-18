@@ -12,7 +12,6 @@ import { featuredArr } from '../components/Featured'
 const Main = () => {
   const [featured, setFeatured] = useState()
 
-
   useEffect(() => {
     const fetchFavedMlProducts = () => {
       fetch(mlConstants.mlApiUrl + 'items?ids=' + featuredArr.toString())
