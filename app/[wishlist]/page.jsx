@@ -143,12 +143,14 @@ const Wishlist = ({ params }) => {
                             <Image src={user.img ? user.img : profileIcon } alt={user.name} width={100} height={100} className='rounded-full' />
                             <h1>{user.name}</h1>
                             
+                            {isOwner &&
                             <div className='flex gap-2'>
                                 <button onClick={() => handleOnShare(user.username)} className='font-semibold py-1 px-2 border border-muted rounded shadow hover:bg-primary'>Compartir perfil</button>
                                 <Link href='/cuenta/informacion'>
                                     <button className='font-semibold py-1 px-2 border border-muted rounded shadow hover:bg-primary'>Editar perfil</button>
                                 </Link>
                             </div>
+                            }
                         </div>
 
                         <div className='py-3 text-center md:text-left'>
