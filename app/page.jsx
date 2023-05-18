@@ -6,17 +6,12 @@ import Image from 'next/image'
 import mainBanner from '../public/mainBanner.svg'
 import SearchBar from '../components/SearchBar'
 import { mlConstants } from '../constants/mlConstants'
-import { LoadingCardPlaceholder } from '../components/LoadingPlaceholders'
 import ItemCard from '../components/ItemCard'
+import { featuredArr } from '../components/Featured'
 
 const Main = () => {
   const [featured, setFeatured] = useState()
-  const featuredArr = [
-    'MLC615879515',
-    'MLC1329086232',
-    'MLC521778610',
-    'MLC950074507',
-  ]
+
 
   useEffect(() => {
     const fetchFavedMlProducts = () => {
@@ -28,7 +23,7 @@ const Main = () => {
       })
     }
     fetchFavedMlProducts()
-  }, [])
+  }, [featuredArr])
 
 
   return (
