@@ -18,8 +18,7 @@ const UploadProfilePicture = ({img, uuid, onSave}) => {
     const handleCompressedUpload = (e) => {
         const image = e.target.files[0]
         if (!image) return
-        const compressor = new Compressor()
-        compressor(image, {
+        new Compressor(image, {
         quality: 0.4,
         width: 200,
         height: 200,
