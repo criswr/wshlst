@@ -34,7 +34,7 @@ const SearchBar = () => {
             onChange={(e) => { setQuery(e.target.value) }}
             onSubmit={onSearch}
             onKeyDown={handleKeyDown}
-            className='block w-full p-2 pl-10 md:pl-5 text-md rounded-sm bg-grey outline-none hover:bg-white focus:bg-white'
+            className='block w-full p-2 pl-10 md:pl-5 text-md rounded-full bg-grey outline-none hover:bg-white focus:bg-white'
         />
 
       <div className=''>

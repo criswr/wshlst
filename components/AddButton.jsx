@@ -46,7 +46,7 @@ const AddButton = ({ product, uniqueVaris, selectedVari, wishlist, single }) => 
 
     const handleOnAdd = async () => {
         const session = await getSession()
-        if (!session) router.push('/login')
+        if (!session) return router.push('/login')
         
         addRemove(new Item(product.id, selectedVari))
         setIsOnWishlist(true)

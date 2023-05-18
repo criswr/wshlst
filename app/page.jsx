@@ -8,6 +8,7 @@ import SearchBar from '../components/SearchBar'
 import { mlConstants } from '../constants/mlConstants'
 import ItemCard from '../components/ItemCard'
 import { featuredArr } from '../components/Featured'
+import { LoadingCardPlaceholder } from '../components/LoadingPlaceholders'
 
 const Main = () => {
   const [featured, setFeatured] = useState()
@@ -31,7 +32,7 @@ const Main = () => {
 
       <div className='bg-white w-full p-10 pt-8 rounded-lg max-w-5xl shadow'>
         <h1 className='text-xl text-muted mb-4 ml-2'>Busca, agrega y comparte tus productos favoritos...</h1>
-        <div className='border-2 border-muted rounded'>
+        <div className='border-2 border-muted rounded-full'>
           <SearchBar />
         </div>
         
@@ -45,7 +46,7 @@ const Main = () => {
             <ItemCard item={ item.body } key={ item.body.id } />
             ))
             :
-            ''
+            <LoadingCardPlaceholder />
           }
         </div>
       </div>
