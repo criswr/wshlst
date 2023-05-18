@@ -53,7 +53,7 @@ const Product =  ({params}) => {
     }, [])
 
     return (
-        <div className='p-2 mt-2'>
+        <div className='p-2 mt-2 w-full'>
             {
                 product.title ?
                 <h1 className='mb-2 md:hidden'>{product.title}</h1> :
