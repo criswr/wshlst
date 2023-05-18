@@ -18,7 +18,7 @@ const UploadProfilePicture = ({img, uuid, onSave}) => {
     const handleCompressedUpload = (e) => {
         const image = e.target.files[0]
         if (!image) return
-        
+
         Reflect.construct(Compressor, [
         image, {
         quality: 0.4,
@@ -56,8 +56,8 @@ const UploadProfilePicture = ({img, uuid, onSave}) => {
     return (
         <div className='w-full flex flex-col items-center p-2'>
             <input
-                accept='image/*,capture=camera'
-                capture='”camera'
+                accept='image/*' /* ,capture=camera */
+                /* capture='”camera' */
                 type='file'
                 id='profilePic'
                 className='hidden'

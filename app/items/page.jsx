@@ -99,7 +99,7 @@ const Items = () => {
     handleOnScroll()
   }
   return (
-    <div className='w-full mx-2'>
+    <div className='w-full'>
       <h1>
         {
           searchKey === 'cat' ?
@@ -111,7 +111,7 @@ const Items = () => {
 
 
 
-      <div className='flex flex-wrap justify-around'>
+      <div className='flex flex-wrap justify-center md:justify-around'>
         {itemsList.length ?
         itemsList.map((item) => (
           <ItemCard item={ item } key={ item.id } wishlist={wishlist} />

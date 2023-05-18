@@ -20,8 +20,8 @@ const ItemCard = ({item, wishlist}) => {
     const isVariable = Object.prototype.hasOwnProperty.call(item, 'variations_data');
 
     return (
-        <article className='bg-white mx-2 my-4 group relative flex flex-wrap items-center justify-center w-80 rounded drop-shadow h-fit'>
-            <div className='relative'>
+        <article className='bg-white my-4 group relative flex items-center justify-center w-80 rounded drop-shadow h-fit'>
+            <div className='relative w-full'>
                 <Link href='/item/[product]' as={'/item/' + item.id}>
                     <div className='relative z-20 w-full sm:w-80 aspect-square flex items-center overflow-hidden'>
                         <Image src={image} alt={item.title} width={0} height={0} sizes='100vh' className='w-full h-full object-contain transition-all duration-300 ease-in-out transform group-hover:scale-125' />       

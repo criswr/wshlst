@@ -46,14 +46,13 @@ const Informacion = () => {
   }
 
   const handleOnChangeUsername = async () => {
-    const validUsername = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
-  
     const { value: data } = await MySwal.fire({
       ... swalConfig,
       title: 'Ingresa un nombre de usuario',
       input: 'text',
       inputValue: user.username,
       inputValidator: (value) => {
+        const validUsername = /^(?=.{5,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/
         const un = value.toLowerCase()
         if (un === user.username.toLowerCase()) MySwal.close()
         if (un.length < 5) return 'El nombre de usuario es muy corto'
