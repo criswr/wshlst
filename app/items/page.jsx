@@ -100,7 +100,7 @@ const Items = () => {
   }
   return (
     <div className='w-full'>
-      <h1>
+      <h1 className='p-2'>
         {
           searchKey === 'cat' ?
           `Categoría ${mlConstants.mlCategories.find(elem => elem.id === searchQuery).name}` :

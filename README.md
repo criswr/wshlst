@@ -1,38 +1,92 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wshlst (MGTA)
 
-## Getting Started
+## Wshlst is a web app that allows the user to create a list of products that they would like to have, and share it on a public profile.
 
-First, run the development server:
+**Live at: [https://mgta.locu.cl](https://mgta.locu.cl)**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### ✨ Information
+* Uses Next.js 13 with the experimental App folder.
+* Uses React-based client and server components.
+* Authentication with Google.
+* User session management with NextAuth.
+* Product data fetched from MercadoLibre's API (Amazon like eCommerce for Latin America).
+* Connection to MongoDB noSQL database.
+* Image storage with Firebase Storage.
+* Images compression and adaptation with Compressor.js.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### ✨ Login
+* Login with Google provider.
+* Automatic registration when logging in for the first time, identified with email and paired with a generated UUID.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### ✨ Account
+* Settings automatically saved when updated.
+* Compression, resizing, renaming and reformatting of fit-for-purpose image as profile picture.
+* Name and username validated with RegExp and exclusion of reserved or risk words.
+* Date of birth with toggle to display information publicly.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### ✨ Categories and Search
+* The items page renders the products results using the information obtained from the URL param, ether the category ID for categories, or the query params for searches.
+* Reuse of the same component to render items from categories or user searches.
+* Pagination of API results with infinite scroll, obtaining the following items when reaching the last one.
+* Product cards conditionally show the add to favorites button if it is a simple product. If it is a variable product, goes to the item page to select variations.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### ✨ Item
+* The item page renders the product using the ID obtained from the URL param.
+* Variations are deactivated when selecting one that is not available in combination with these.
+* If the set of variations only has one option, it is automatically selected.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### ✨ Profile
+* Renders the username information obtained through the URL param.
+* Buttons to edit profile or delete items from the list are rendered conditionally if the user identified with the URL param is the same authenticated.
+* If the setting is enabled on the account, a countdown to the user's next birthday is displayed.
 
-## Learn More
+### ✨ Upcoming Features
+* Authentication with more providers, different from Google.
+* New sources for fetching products.
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Proyecto Wshlst (MGTA) - Español
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Wshlst es una web app que permite al usuario crear una lista de productos que le gustaría tener, y compartirla en un perfil público.
 
-## Deploy on Vercel
+**Live en: [https://mgta.locu.cl](https://mgta.locu.cl)**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ✨ Información
+* Utiliza Next.js 13 con la carpeta experimental App.
+* Utiliza componentes de cliente y de servidor basados en React.
+* Autenticación con Google.
+* Manejo de sesión de usuario con NextAuth.
+* Obtención de datos de productos desde la API de MercadoLibre.
+* Conexión a base de datos noSQL MongoDB.
+* Almacenamiento de imágenes con Firebase Storage.
+* Compresión y adecuación de imágenes con Compressor.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### ✨ Login
+* Login con proveedor de Google.
+* Registro automático al iniciar sesión por primera vez, identificado con email y emparejado con un UUID generado.
+
+### ✨ Cuenta
+* Actualización de ajustes guardada automáticamente al cambiar cualquiera.
+* Compresión, redimensión, renombre y reformateo de imagen adecuada al propósito como foto de perfil.
+* Nombre y nombre de usuario validados con RegExp y exclusión de palabras reservadas o de riesgo.
+* Fecha de nacimiento con toggle para mostrar información públicamente.
+
+### ✨ Categorías y Búsqueda
+* La página de items muestra los resultados de productos utilizando la información obtenida del parámetro de URL, ya sea el ID de categoría para categorías o los parámetros de consulta para búsquedas.
+* Reutilización del mismo componente para renderizar items de categorías o de búsquedas de usuario.
+* Paginación de resultados de API con scroll infinito, obtención de siguientes items al llegar al último.
+* Cards de producto muestran condicionalmente el botón para agregar a favoritos si es que es un producto simple. De ser un producto variable, lleva a la página de item para seleccionar variaciones.
+
+### ✨ Item
+* La página de item renderiza el producto utilizando el ID obtenido desde el parámetro de URL.
+* Variaciones se desactivan al seleccionar alguna que no este disponible en combinación a estas.
+* Si el conjunto de variaciones solamente tiene una opción, se selecciona automáticamente.
+
+### ✨ Perfil
+* Se renderiza la información del nombre de usuario obtenido a través del parámetro de URL.
+* Botones para editar el perfil o borrar items de la lista se renderizan condicionalmente si el usuario identificado con el parámetro de URL es el mismo de la sesión.
+* Si el ajuste está activado en la cuenta, se muestra una cuenta regresiva para el próximo cumpleaños del usuario.
+
+### ✨ Próximas características
+* Autenticación con más proveedores, diferentes a Google.
+* Nuevas fuentes para la obtención de productos.
