@@ -1,37 +1,28 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getSession} from 'next-auth/react'
 import Link from 'next/link'
 import Image from 'next/image'
 
 import SearchBar from './SearchBar'
 import mgtaLogo from '../public/mgtaLogo.svg'
+import { UserContext } from './context/context'
 
 
 const Header = () => {
     const [menuVisible, setMenuVisible] = useState(false)
-    const [user, setUser] = useState()
+    const {user, findUserEmail} = useContext(UserContext)
 
     useEffect(() => {
+        if (!user){
         const findUser = async() => {
-          const session = await getSession()
-
-          if (session){
-            fetch('/api/user', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                email: session.user.email,
-              }),
-            })
-            .then(res => res.json())
-            .then(data => setUser(data.user))
-          }
+            const session = await getSession()
+            if (session){
+                findUserEmail(session.user.email)
+            }
         }
-        findUser()
+        findUser()}
     }, [])
 
     const links = [
@@ -63,7 +54,14 @@ const Header = () => {
                 label: 'Mi perfil',
                 route: `/${user.username}`
             }
-        ] : []
+        ] : [],
+
+        ... user?.isAdmin ? [
+            {
+                label: 'Admin',
+                route: '/adm'
+            }
+        ] : [],
     ] 
     
 

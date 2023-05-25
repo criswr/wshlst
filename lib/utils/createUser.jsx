@@ -25,7 +25,7 @@ export const createUser = async (email, name) => {
                 address: {},
                 birthdate: '',
                 status: true,
-                role: 'user',
+                isAdmin: false,
                 wishlist: [],
                 timestamp: Date.now(),
                 config: {
