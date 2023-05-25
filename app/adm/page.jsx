@@ -1,12 +1,19 @@
 'use client'
 
-import React, { useContext} from 'react'
+import React, { useContext, useEffect} from 'react'
 import { UserContext } from '../../components/context/context'
 import LastUsers from '../../components/adminComponents/LastUsers'
 import UserCount from '../../components/adminComponents/UserCount'
+import { useRouter } from 'next/navigation'
 
 const Adm = () => {
     const {user} = useContext(UserContext)
+    const router = useRouter()
+
+    useEffect(() => {
+        if (user && !user.isAdmin) router.push('/cuenta')
+    }, [user])
+    
     
     if (!user) return (
         <h1>Cargando</h1>
@@ -15,8 +22,10 @@ const Adm = () => {
     if (user?.isAdmin) return (
         <div className='p-2'>
             <h1>Admin</h1>
-            <LastUsers user={user} />
-            <UserCount user={user} />
+            <div className='flex gap-5 flex-wrap'>
+                <LastUsers user={user} />
+                <UserCount user={user} />
+            </div>
         </div>
     )
 

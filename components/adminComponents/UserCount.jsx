@@ -11,7 +11,7 @@ const UserCount = ({ user }) => {
         .then(data => setCount(data.count))
     }, [user])
   return (
-    <div>
+    <div className='border border-muted rounded p-2 pt-0 self-start'>
         <h2>Usuarios totales</h2>
         <h2>{count}</h2>
     </div>

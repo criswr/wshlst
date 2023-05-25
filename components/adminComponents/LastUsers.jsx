@@ -12,13 +12,13 @@ const LastUsers = ({ user }) => {
     }, [user])
 
   return (
-    <div>
+    <div className='border border-muted rounded p-2 pt-0'>
         <h2>Últimos usuarios registrados</h2>
             <div>
                 {last?.map(usr => {
                     const date = new Date(usr.timestamp)
                     return (
-                        <div key={usr.email} className='border-b'>
+                        <div key={usr.email} className='border-b last:border-b-0'>
                             <p>Email: {usr.email}</p>
                             <p>Registro: {date.toLocaleDateString()}</p>
                         </div>
