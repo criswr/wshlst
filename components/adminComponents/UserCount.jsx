@@ -4,8 +4,6 @@ const UserCount = ({ user }) => {
     const [count, setCount] = useState()
 
     useEffect(() => {
-        if (user && !user.isAdmin) router.push('/cuenta')
-
         fetch('/api/admin/usercount', {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},

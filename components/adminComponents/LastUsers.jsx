@@ -4,8 +4,6 @@ const LastUsers = ({ user }) => {
     const [last, setLast] = useState()
 
     useEffect(() => {
-        if (user && !user.isAdmin) router.push('/cuenta')
-
         fetch('/api/admin/lastusers', {
             method: 'GET',
             headers: {'Content-Type': 'application/json'},
