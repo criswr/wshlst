@@ -1,7 +1,6 @@
 'use client'
 
-import React, { useContext, useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
+import React, { useContext} from 'react'
 import { UserContext } from '../../components/context/context'
 import LastUsers from '../../components/adminComponents/LastUsers'
 import UserCount from '../../components/adminComponents/UserCount'
