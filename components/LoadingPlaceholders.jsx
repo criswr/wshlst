@@ -1,11 +1,34 @@
 export const LoadingCardPlaceholder = () => {
     return (
-        <div className='w-80 mx-2 my-4'>
-            <div className='animate-pulse flex items-center flex-col gap-2'>
-                <div className='rounded bg-muted h-80 w-80' />
-                <div className='rounded-full bg-muted h-8 w-72 mt-5' />
+        <>
+            <div className='w-80 mx-2 my-4'>
+                <div className='animate-pulse flex items-center flex-col gap-2'>
+                    <div className='rounded bg-muted h-80 w-80' />
+                    <div className='rounded-full bg-muted h-8 w-72 mt-5' />
+                </div>
             </div>
-        </div>
+
+            <div className='w-80 mx-2 my-4 hidden md:block'>
+                <div className='animate-pulse flex items-center flex-col gap-2'>
+                    <div className='rounded bg-muted h-80 w-80' />
+                    <div className='rounded-full bg-muted h-8 w-72 mt-5' />
+                </div>
+            </div>
+            
+            <div className='w-80 mx-2 my-4 hidden md:block'>
+                <div className='animate-pulse flex items-center flex-col gap-2'>
+                    <div className='rounded bg-muted h-80 w-80' />
+                    <div className='rounded-full bg-muted h-8 w-72 mt-5' />
+                </div>
+            </div>
+
+            <div className='w-80 mx-2 my-4 hidden md:block'>
+                <div className='animate-pulse flex items-center flex-col gap-2'>
+                    <div className='rounded bg-muted h-80 w-80' />
+                    <div className='rounded-full bg-muted h-8 w-72 mt-5' />
+                </div>
+            </div>
+        </>
     )
 }
 
@@ -31,8 +54,8 @@ export const LoadingWishlistCard = () => (
             <div className='w-40 h-40 aspect-square rounded bg-muted' />
         </div>
         <div className='flex flex-col gap-2 grow animate-pulse w-full'>
-            <div className='w-full h-5 rounded-full bg-muted w-full' />
-            <div className='w-1/2 h-5 rounded-full bg-muted w-full' />
+            <div className='w-full h-5 rounded-full bg-muted' />
+            <div className='w-1/2 h-5 rounded-full bg-muted' />
         </div>
     </div>
 )

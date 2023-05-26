@@ -111,7 +111,7 @@ const Items = () => {
 
 
 
-      <div className='flex flex-wrap justify-center md:justify-around'>
+      <div className='flex flex-wrap justify-center md:justify-around gap-2'>
         {itemsList.length ?
         itemsList.map((item) => (
           <ItemCard item={ item } key={ item.id } wishlist={wishlist} />
@@ -121,7 +121,7 @@ const Items = () => {
         }
 
         {
-          !wasLastList && <div ref={ref}><LoadingCardPlaceholder/></div>
+          !wasLastList && <div ref={ref} className='flex flex-wrap justify-center md:justify-between w-full'><LoadingCardPlaceholder/></div>
         }
       </div>
 
