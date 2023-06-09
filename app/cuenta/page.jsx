@@ -31,6 +31,11 @@ const Cuenta = () => {
       img: iconInformation,
     },
     {
+      label: 'Dirección para despacho',
+      route: '/cuenta/direccion',
+      img: iconInformation,
+    },
+    {
       label: 'Soporte',
       route: 'https://locu.cl/soporte/',
       img: iconSupport,

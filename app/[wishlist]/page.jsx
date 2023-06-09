@@ -12,8 +12,8 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import Link from 'next/link'
 import empty from '../../public/empty.svg'
-import noUser from '../../public/noUser.svg'
 import { LoadingUser, LoadingWishlistCard } from '../../components/LoadingPlaceholders'
+import UnknownUser from '../../components/wishlist/UnknownUser'
 
 const Wishlist = ({ params }) => {
     const [user, setUser] = useState()
@@ -28,9 +28,7 @@ const Wishlist = ({ params }) => {
         const findUser = (query) => {
             fetch('/api/user', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     username: query,
                 }),
@@ -47,7 +45,7 @@ const Wishlist = ({ params }) => {
 
     useEffect(() => {
         if (user && user.wishlist.length){
-            const idArr = user.wishlist.map((elem) => (elem.id))
+            const idArr = user.wishlist.map(elem => elem.id)
                 const fetchFavedMlProducts = () => {
                     fetch(mlConstants.mlApiUrl + 'items?ids=' + idArr.toString())
                     .then(res => res.json())
@@ -56,7 +54,7 @@ const Wishlist = ({ params }) => {
                         setItemsLoaded(true)
                     })
                 }
-                fetchFavedMlProducts(user)
+                fetchFavedMlProducts()
 
             const findLoggedUser = async() => {
                 const session = await getSession()
@@ -167,7 +165,7 @@ const Wishlist = ({ params }) => {
                         items.length
                     ?
                         items?.map((item) => (
-                            <WishlistItemCard item={ item.body } key={item.body.id} wishlist={user.wishlist} isOwner={isOwner}/>
+                            <WishlistItemCard item={ item.body } key={item.body.id} isOwner={isOwner} user={user} />
                         ))
                     :
                         itemsLoaded ?
@@ -190,16 +188,8 @@ const Wishlist = ({ params }) => {
             }
 
             {
-            userLoaded && !user && 
-
-                <div className='w-full rounded py-10 px-2 flex flex-col items-center gap-5'>
-                    <Image src={noUser} alt='No hay usuario' width='auto' height={400} />
-                    <h2>No encontramos al usuario {params.wishlist}</h2>
-                    <p className='text-center max-w-screen-sm'>Seguramente sufrió combustión espontánea, es decir que ya no existe debido a fuego originado sin una fuente externa aparente de ignición, que probablemente comenzó dentro del cuerpo de la persona. Eso o el nombre de usuario está mal escrito.</p>
-                    <Link href='/'>
-                        <button className='bg-grey font-semibold py-2 px-4 mr-2 mb-2 border border-muted rounded shadow hover:bg-white'>Volver</button>
-                    </Link>
-                </div>
+                userLoaded && !user && 
+                <UnknownUser userName={params.wishlist} />
             }
         </>
     )

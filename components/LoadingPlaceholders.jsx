@@ -70,3 +70,11 @@ export const LoadingUser = () => (
         </div>
     </div> 
 )
+
+export const LoadingText = () => (
+    <div className='w-full'>
+        <div className='animate-pulse'>
+            <div className='rounded-full bg-muted h-3 w-full' />
+        </div>
+    </div>
+)

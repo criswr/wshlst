@@ -4,7 +4,7 @@ import { dbInit } from "./dbInit";
 
 let response
 
-export const updateSettings = async ({email, newUsername, newName, newBirthdate, newConfig, newImg}) => {
+export const updateSettings = async ({email, uuid, newUsername, newName, newBirthdate, newConfig, newImg, newAddress}) => {
     try {
         if (!response) response = await dbInit(dbConstants.mainDb, dbConstants.usersColl)
 
@@ -24,6 +24,18 @@ export const updateSettings = async ({email, newUsername, newName, newBirthdate,
             .updateOne(emailQuery, { $set: { 'username' : newUsername } })
             
             return { response: res }
+        }
+
+        if (newAddress) {
+            const uuidQuery = { uuid: uuid }
+            const getRes = await response
+            .findOne(uuidQuery, options)
+            
+            if (getRes){
+                const res = await response
+                .updateOne(uuidQuery, { $set: { 'address' : newAddress } })
+                return { response: res }
+            }
         }
 
         if (newName) {

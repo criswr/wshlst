@@ -1,4 +1,5 @@
 export const dbConstants = {
     mainDb: 'wshlst',
-    usersColl: 'users'
+    usersColl: 'users',
+    addressesColl: 'addresses',
 }
