@@ -5,25 +5,32 @@ import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
 
 initMercadoPago(process.env.NEXT_PUBLIC_MP_PUBLIC_KEY)
 
-const PaymentButton = ({item, shipping}) => {
+const PaymentButton = ({item, shipping, recipient, fee, metadata}) => {
     const [globalId, setGlobalId] = useState()
 
-    const fetchPreference = (item) => {
+    const fetchPreference = () => {
         fetch('/api/payment', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 item,
-                shipping: 1000,
-                recipient: null,
+                shipping,
+                recipient,
+                fee,
+                metadata,
             }),
         })
         .then(res => res.json())
-        .then(data => data.global && setGlobalId(data.global))
+        .then(data => {
+            console.log('dataresponse', data);
+            data.global && setGlobalId(data.global)
+        })
     }
 
     useEffect(() => {
-        fetchPreference(item)
+        if (item) {
+            fetchPreference()
+        }
     }, [item])
     
     useEffect(() => {
@@ -31,7 +38,11 @@ const PaymentButton = ({item, shipping}) => {
     }, [globalId])
     
     return (
-        <Wallet initialization={{ preferenceId: globalId }} />
+        <>
+            { globalId &&
+                <Wallet initialization={{ preferenceId: globalId }} />
+            }
+        </>
     )
 }
 

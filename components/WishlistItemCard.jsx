@@ -10,18 +10,14 @@ import { price } from './Price'
 import { addRemove } from './AddRemove'
 import externalLink from '../public/externalLink.svg'
 import GiftButton from './wishlist/GiftButton'
+import WhiteButton from './WhiteButton'
 
 
-const WishlistItemCard = ({ item, isOwner, user }) => {
+const WishlistItemCard = ({ item, isOwner, user, isDeactivated }) => {
     const [isDeleted, setIsDeleted] = useState(false)
 
     const MySwal = withReactContent(Swal)
     const image = item.thumbnail.replace(/I.jpg/g, 'O.jpg') // Replaces ML thumbnail with high res picture
-    const title = (str) => {
-        const max = 50
-        if (str.length > max) return str.substring(0, max) + '...'
-        return str
-    }
     const isVariable = item.variations.length > 0
     const wishlistItem = user.wishlist.find(el => el.id === item.id)
 
@@ -59,11 +55,11 @@ const WishlistItemCard = ({ item, isOwner, user }) => {
     }
 
     return (
-        <article className={`bg-white p-2 flex gap-5 ${isDeleted && 'opacity-50'}`}>
+        <article className={`bg-white p-2 flex gap-5 relative ${isDeleted && 'opacity-50'} ${!isOwner && isDeactivated && 'hidden'}`}>
             <div className='flex gap-5 grow'>
 
                 <Link href='/item/[product]' as={'/item/' + item.id}>
-                    <div className='w-40 h-40 rounded shadow-lg aspect-square'>
+                    <div className='w-40 h-40 rounded shadow aspect-square'>
                         <Image src={image} alt={item.title} width={0} height={0} sizes='100vh' className='w-full h-full object-contain' />
                     </div>
                 </Link>
@@ -78,9 +74,10 @@ const WishlistItemCard = ({ item, isOwner, user }) => {
                         <p className=''>{price(item.price)}</p>
                     </Link>
                     
-                    <GiftButton user={user} item={item} />
+                    {!isDeactivated && <GiftButton user={user} item={item} />}
                 </div>
             </div>
+
             <div className='flex-shrink-0 flex flex-col items-center gap-2 w-fit pt-2'>
                 {
                     isOwner &&
@@ -90,6 +87,11 @@ const WishlistItemCard = ({ item, isOwner, user }) => {
                 }
 
                 <Link href={item.permalink} target='_blank'><Image src={externalLink} alt='Ver en MercadoLibre' width={30} className='object-contain'   /></Link>
+            </div>
+
+            <div className={`bg-white/90 p-2 absolute w-full h-full top-0 right-0 justify-center items-center flex-col text-center ${isDeactivated ? 'flex' : 'hidden'} ${isDeleted && 'hidden'}`}>
+                <p>Este artículo no cuenta con el stock necesario para mostrarse.</p>
+                <WhiteButton label='Eliminar' onClick={handleOnClick} />
             </div>
         </article>
     )

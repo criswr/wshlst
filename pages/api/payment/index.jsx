@@ -8,39 +8,66 @@ const paymentApi = async (req, res) => {
             if (body) {
                 const item = body.item
                 const shipping = body.shipping
+                const fee = body.fee
                 const recipient = body.recipient
-                let global
+                const metadata = body.metadata
 
-                let preference = {
+                const preference = {
                     items: [
                         {
                             title: item.title,
                             unit_price: item.price,
-                            quantity: 1,
-                        },
-                        {
-                            title: 'Despacho',
-                            unit_price: shipping,
+                            id: item.id,
+                            picture_url: item.thumbnail,
                             quantity: 1,
                         },
                         {
                             title: 'Cargo por servicio',
-                            unit_price: item.price * 0.1,
+                            unit_price: fee,
                             quantity: 1,
                         },
                     ],
+
+                    shipments: {
+                        cost: shipping,
+                        mode: 'not_specified',
+                    },
+
+                    metadata,
+
+                    payer: {
+                        identification: 
+                        {
+                            number: recipient.uudi,
+                            type: 'uuid'
+                        }
+                    },
+
+                    back_urls: {
+                        success: process.env.BASE_FETCH_URL + 'regalar/suc',
+                        pending: process.env.BASE_FETCH_URL + 'regalar/pen',
+                        failure: process.env.BASE_FETCH_URL + 'regalar/fai',
+                    },
+
+                    auto_return: 'approved',
                 }
-            
-                mercadopago.preferences
+
+                const getPreference = async () => {
+                    let global = await mercadopago.preferences
                     .create(preference)
-                    .then(function (response) {
-                        global = response.body.id
+                    .then(async function (response) {
+                        let id = await response.body.id
+                        return id
                     })
                     .catch(function (error) {
-                        console.log(error)
+                        console.log('error', error)
                     })
+                    return global
+                }
 
-                return res.status(200).json({global: global})
+                const preferenceId = await getPreference()
+
+                return res.status(200).json({ global: preferenceId })
             }
             
         } catch (error) {

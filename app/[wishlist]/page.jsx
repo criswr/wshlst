@@ -129,6 +129,10 @@ const Wishlist = ({ params }) => {
         
         navigator.clipboard.writeText(siteConstants.baseUrl + text)
     }
+
+    const isDeactivated = item => {
+        return item.body.available_quantity < 5
+    }
     
     return (
         <>
@@ -164,9 +168,10 @@ const Wishlist = ({ params }) => {
                     {
                         items.length
                     ?
-                        items?.map((item) => (
-                            <WishlistItemCard item={ item.body } key={item.body.id} isOwner={isOwner} user={user} />
-                        ))
+                        items?.map(item => {
+                            if (item.code !== 200) return
+                            return(<WishlistItemCard item={ item.body } key={item.body.id} isOwner={isOwner} user={user} isDeactivated={isDeactivated(item)}/>)
+                        })
                     :
                         itemsLoaded ?
                         <div className='w-full bg-white rounded py-20 flex flex-col items-center gap-5'>
